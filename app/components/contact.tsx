@@ -647,7 +647,7 @@ function Textarea(props: {
         placeholder={label}
         aria-invalid={!!error}
         aria-describedby={describedBy}
-        className={`peer block w-full resize-none rounded-xl border pl-10 pr-3 pt-5 pb-2 text-sm text-gray-900 outline-none transition placeholder-transparent focus:ring-2
+        className={`peer block w-full resize-none rounded-xl border pl-10 pr-3 pt-10 pb-2 text-sm text-gray-900 outline-none transition placeholder-transparent focus:ring-2
           ${
             error
               ? 'border-red-300 ring-red-200'
