@@ -181,14 +181,7 @@ export default function ContactForm() {
 
   return (
     <div className="relative mx-auto max-w-6xl px-4 py-12 pt-40">
-      <div className="mb-10">
-        <h1 className="text-4xl font-bold text-center">
-          Contact Nexalith Systems
-        </h1>
-        <p className="text-center text-gray-600">
-          We’d love to hear about your project, app idea, or business needs.
-        </p>
-      </div>
+     
 
       <GradientBackdrop />
 
