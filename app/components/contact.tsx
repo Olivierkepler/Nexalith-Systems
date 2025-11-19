@@ -129,6 +129,7 @@ export default function ContactForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
+      
 
       progress.start({ width: '92%', transition: { duration: 0.4 } });
 
