@@ -485,7 +485,7 @@ function SubmitButton({
       type="submit"
       whileTap={{ scale: 0.98 }}
       disabled={state === 'loading'}
-      className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-amber-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-amber-600 disabled:opacity-60"
+      className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-amber-500 px-5 py-2 cursor-pointer text-sm font-semibold text-white shadow-lg transition hover:bg-amber-600 disabled:opacity-60"
     >
       <motion.span
         initial={{ width: '0%' }}
@@ -532,7 +532,7 @@ function SubmitButton({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
           >
-            Send Inquiry →
+            Submit
           </motion.span>
         )}
       </AnimatePresence>
