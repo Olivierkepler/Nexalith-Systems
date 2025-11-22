@@ -20,12 +20,43 @@ export default function Navbar() {
 
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
-          {/* YourBrand */}
-          <img src="/logo1.png" alt="Nexalith Logo" width={60} height={60} />
-          <span className="text-xl font-semibold tracking-tight">WebAIGen</span>
-        </Link>
+     {/* Brand Logo */}
+<Link
+  href="/"
+  className="
+    flex items-center gap-3 group
+    transition-all duration-300
+  "
+>
+  {/* Logo Image */}
+  <div
+    className="
+      h-12 w-12 rounded-xl overflow-hidden flex items-center justify-center
+      shadow-sm bg-white
+      transition-all duration-300
+      group-hover:shadow-md group-hover:scale-[1.06]
+    "
+  >
+    <img
+      src="/logo1.png"
+      alt="WebAIGen Logo"
+      width={48}
+      height={48}
+      className="object-contain"
+    />
+  </div>
+
+  {/* Text */}
+  <span
+    className="
+      text-2xl font-semibold tracking-tight 
+      flex items-center gap-1
+      transition-all duration-300 
+      group-hover:text-black
+    "
+  >
+      Web<span className="text-orange-500 group-hover:text-orange-600 transition">AI</span>Gen</span>
+</Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8">
