@@ -2,7 +2,8 @@
 
 import { useEffect, useId, useRef, useState } from 'react';
 import { motion, AnimatePresence, useAnimationControls } from 'framer-motion';
-
+   
+import NeuralNetwork from './NeuralNetwork';
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 type Errors = Record<string, string>;
 
@@ -371,7 +372,8 @@ function LeftPane({ state }: { state: FormState }) {
             <span>Business Apps • Portfolio Sites • Service Platforms</span>
           </li>
         </ul>
-
+        <NeuralNetwork />
+        {/* <Image className="w-full h-full justify-center items-center" src="/logo1.png" alt="Nexalith Logo" width={80} height={80} /> */}
         <div className="mt-auto pt-8 text-xs text-gray-500">
           Tip: Press{' '}
           <kbd className="rounded bg-gray-800 px-1.5 py-0.5 font-mono text-white">
@@ -403,7 +405,7 @@ function StepHeader({ state }: { state: FormState }) {
   return (
     <div>
       <h2 className="text-lg font-semibold text-gray-900">
-        Start Your Nexalith Project
+        Start Your Project
       </h2>
       <div className="mt-3 flex items-center gap-2">
         {steps.map((s, i) => {
