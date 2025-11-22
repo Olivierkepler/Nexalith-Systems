@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 // ---- DELETE --------------------------------------------------------------
 export async function DELETE(
   req: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = context.params;
+  const { id } = await context.params;
   const rowId = Number(id);
 
   if (!rowId || rowId < 2) {
@@ -54,9 +54,9 @@ export async function DELETE(
 // ---- PUT (UPDATE) -------------------------------------------------------
 export async function PUT(
   req: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { id } = context.params;
+  const { id } = await context.params;
   const rowId = Number(id);
 
   if (!rowId || rowId < 2) {
