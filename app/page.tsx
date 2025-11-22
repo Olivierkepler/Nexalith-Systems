@@ -7,6 +7,7 @@ import Subnav from "./components/Subnav";
 import ServicesSection from "./components/ServicesSection";
 import PricingSection from "./components/PricingSection";
 import FeaturesSection from "./components/FeaturesSection";
+import TestimonialsSection from "./components/TestimonialsSection";
 export default function HomePage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -20,6 +21,7 @@ export default function HomePage() {
       <ServicesSection />
       <PricingSection openConsultation={() => setIsConsultationOpen(true)} />
         <FeaturesSection />
+        <TestimonialsSection />
       <ConsultationModal
         isOpen={isConsultationOpen}
         setIsOpen={setIsConsultationOpen}
