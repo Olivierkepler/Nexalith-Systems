@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 // ---- DELETE --------------------------------------------------------------
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = context.params;
   const rowId = Number(id);
 
   if (!rowId || rowId < 2) {
@@ -29,9 +29,9 @@ export async function DELETE(
           {
             deleteDimension: {
               range: {
-                sheetId: 0, // Sheet1 is usually ID 0
+                sheetId: 0,
                 dimension: "ROWS",
-                startIndex: rowId - 1, // zero-based index
+                startIndex: rowId - 1,
                 endIndex: rowId,
               },
             },
@@ -50,12 +50,13 @@ export async function DELETE(
   }
 }
 
+
 // ---- PUT (UPDATE) -------------------------------------------------------
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = context.params;
   const rowId = Number(id);
 
   if (!rowId || rowId < 2) {
@@ -83,7 +84,7 @@ export async function PUT(
 
     await sheets.spreadsheets.values.update({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: `Sheet1!A${rowId}:D${rowId}`, // A-D = name, email, phone, message
+      range: `Sheet1!A${rowId}:D${rowId}`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [[name, email, phone || "", message || ""]],
