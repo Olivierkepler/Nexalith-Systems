@@ -8,19 +8,19 @@ const testimonials = [
     name: "Michael Carter",
     role: "CEO, CarterSoft Solutions",
     text: "WebAIGen completely transformed our workflow. Their AI automation reduced our workload by 60% and improved customer response time instantly.",
-    avatar: "/avatars/avatar1.jpg",
+    avatar: "/images/woman1.jpg",
   },
   {
     name: "Emily Rodriguez",
     role: "Marketing Director, NovaTech",
     text: "Their custom AI chatbot is the smartest tool we've ever implemented. Our support team now handles twice the volume with half the effort.",
-    avatar: "/avatars/avatar2.jpg",
+    avatar: "/images/woman2.jpg",
   },
   {
     name: "James Bennett",
     role: "Founder, Bennett Real Estate",
     text: "We use WebAIGen's AI tools to manage leads and automate follow-ups. It's like having a full-time assistant working 24/7.",
-    avatar: "/avatars/avatar3.jpg",
+    avatar: "/images/woman4.jpg",
   },
 ];
 
