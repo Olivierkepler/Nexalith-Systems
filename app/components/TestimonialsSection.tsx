@@ -88,13 +88,13 @@ export default function TestimonialsSection() {
                 {item.avatar ? (
                   <Image
                     src={item.avatar}
-                    width={48}
-                    height={48}
+                    width={100}
+                    height={100}
                     alt={item.name}
                     className="rounded-full object-cover"
                   />
                 ) : (
-                  <div className="h-12 w-12 rounded-full bg-gray-300" />
+                  <div className="h-18 w-18 rounded-full bg-gray-300" />
                 )}
 
                 <div>

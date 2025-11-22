@@ -8,6 +8,7 @@ import ServicesSection from "./components/ServicesSection";
 import PricingSection from "./components/PricingSection";
 import FeaturesSection from "./components/FeaturesSection";
 import TestimonialsSection from "./components/TestimonialsSection";
+import FAQSection from "./components/FAQSection";
 export default function HomePage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -22,6 +23,7 @@ export default function HomePage() {
       <PricingSection openConsultation={() => setIsConsultationOpen(true)} />
         <FeaturesSection />
         <TestimonialsSection />
+        <FAQSection />
       <ConsultationModal
         isOpen={isConsultationOpen}
         setIsOpen={setIsConsultationOpen}
