@@ -174,7 +174,7 @@ export default function NewUsersNotification() {
                 localStorage.setItem("sound_enabled", String(enabled));
               }}
               className={`relative inline-flex h-5 w-10 items-center rounded-full transition
-              ${soundEnabled ? "bg-indigo-600" : "bg-gray-300"}`}
+              ${soundEnabled ? "border border-gray-200" : "border border-gray-200"}`}
             >
               <span
                 className={`inline-block h-4 w-4 transform rounded-full bg-white transition
@@ -186,8 +186,8 @@ export default function NewUsersNotification() {
           {/* View All */}
           <a
             href="/admin"
-            className="block text-center py-2 bg-indigo-600 text-white 
-                       rounded-lg text-sm font-semibold hover:bg-indigo-500 
+            className="block text-center py-2 border border-gray-200 text-white 
+                       rounded-lg text-sm font-semibold hover:bg-gray-100 
                        transition shadow-sm"
           >
             View All Submissions
