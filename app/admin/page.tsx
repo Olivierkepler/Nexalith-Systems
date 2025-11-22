@@ -13,6 +13,7 @@ import {
   ChevronRight,
   LogOut,
 } from "lucide-react";
+import NewUsersNotification from "../components/NewUsersNotification";
 
 export default function AdminDashboard() {
   const [entries, setEntries] = useState<any[]>([]);
@@ -223,6 +224,8 @@ export default function AdminDashboard() {
           </div>
 
           <div className="flex items-center gap-3">
+              {/* 🔔 New Users Notification */}
+  <NewUsersNotification />
             <button
               onClick={exportCSV}
               className="inline-flex items-center cursor-pointer gap-2 px-4 py-2  border border-gray-300 rounded-lg shadow-sm hover:bg-gray-200 transition"
