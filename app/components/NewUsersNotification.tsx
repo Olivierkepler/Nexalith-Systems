@@ -107,67 +107,94 @@ export default function NewUsersNotification() {
 
         {/* Dropdown Panel */}
         {open && (
-          <div className="absolute right-0 mt-2 w-80 bg-white shadow-xl border border-gray-200 rounded-xl p-4 z-20">
-            <h3 className="text-sm font-semibold text-gray-600 mb-3">
-              Recent Submissions
-            </h3>
-
-            {!entries.length ? (
-              <p className="text-xs text-gray-500">No submissions yet</p>
-            ) : (
-              entries.slice(0, 5).map((entry: any, i: number) => (
+        <div
+        className="absolute right-0 mt-3 w-80 backdrop-blur-sm bg-white/80
+                   border border-gray-200 shadow-lg rounded-xl z-20 
+                   animate-scale-fade"
+      >
+        {/* Header */}
+        <div className="px-4 py-3 border-b border-gray-100">
+          <h3 className="text-sm font-semibold text-gray-700">Recent Submissions</h3>
+          <p className="text-xs text-gray-400">Latest 5 new users</p>
+        </div>
+      
+        {/* Body */}
+        <div className="max-h-64 overflow-y-auto">
+          {!entries.length ? (
+            <p className="text-xs text-gray-500 p-4 text-center">
+              No submissions yet
+            </p>
+          ) : (
+            entries.slice(0, 5).map((entry: any, i: number) => (
+              <div
+                key={i}
+                className={`flex items-start gap-3 px-4 py-3 border-b border-gray-100 last:border-none
+                  ${i === 0 && unread ? "bg-yellow-50/60" : "hover:bg-gray-50/70 transition"}
+                `}
+              >
+                {/* Avatar */}
                 <div
-                  key={i}
-                  className={`border-b last:border-none py-2 ${
-                    i === 0 && unread ? "bg-yellow-50" : ""
-                  }`}
+                  className="h-8 w-8 rounded-full bg-indigo-600 text-white flex items-center 
+                             justify-center text-xs font-semibold shadow-sm"
                 >
-                  <p className="font-medium text-gray-900">{entry.name}</p>
-                  <p className="text-xs text-gray-500">{entry.email}</p>
-                  <p className="text-xs text-gray-400 mt-1">
-                    {entry.timestamp}
-                  </p>
+                  {entry.name.charAt(0).toUpperCase()}
                 </div>
-              ))
-            )}
-
-            {/* Mark as Read */}
+      
+                {/* Info */}
+                <div>
+                  <p className="font-medium text-gray-900 text-sm">{entry.name}</p>
+                  <p className="text-xs text-gray-500">{entry.email}</p>
+                  <p className="text-[10px] text-gray-400 mt-1">{entry.timestamp}</p>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      
+        {/* Footer */}
+        <div className="px-4 py-3 border-t border-gray-100 space-y-3">
+          {/* Mark all read */}
+          <button
+            onClick={markAsRead}
+            className="w-full text-sm py-2 rounded-lg border border-gray-200 
+                      hover:bg-gray-100 transition font-medium text-gray-700"
+          >
+            Mark all as read
+          </button>
+      
+          {/* Sound Toggle */}
+          <div className="flex items-center justify-between text-sm text-gray-700">
+            <span>Sound Notifications</span>
+      
+            {/* Modern Switch */}
             <button
-              onClick={markAsRead}
-              className="mt-3 w-full text-center text-sm py-2
-                        bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700"
+              onClick={() => {
+                const enabled = !soundEnabled;
+                setSoundEnabled(enabled);
+                localStorage.setItem("sound_enabled", String(enabled));
+              }}
+              className={`relative inline-flex h-5 w-10 items-center rounded-full transition
+              ${soundEnabled ? "bg-indigo-600" : "bg-gray-300"}`}
             >
-              Mark all as read
-            </button>
-
-            {/* Sound Toggle */}
-            <div className="mt-3 flex items-center justify-between">
-              <span className="text-sm text-gray-600">
-                Sound Notifications
-              </span>
-              <input
-                type="checkbox"
-                checked={soundEnabled}
-                onChange={(e) => {
-                  setSoundEnabled(e.target.checked);
-                  localStorage.setItem(
-                    "sound_enabled",
-                    String(e.target.checked)
-                  );
-                }}
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition
+                ${soundEnabled ? "translate-x-5" : "translate-x-1"}`}
               />
-            </div>
-
-            {/* View All */}
-            <a
-              href="/admin"
-              className="block text-center mt-3 py-2 bg-indigo-600 
-                        text-white rounded-lg hover:bg-indigo-500
-                        transition text-sm"
-            >
-              View All Submissions
-            </a>
+            </button>
           </div>
+      
+          {/* View All */}
+          <a
+            href="/admin"
+            className="block text-center py-2 bg-indigo-600 text-white 
+                       rounded-lg text-sm font-semibold hover:bg-indigo-500 
+                       transition shadow-sm"
+          >
+            View All Submissions
+          </a>
+        </div>
+      </div>
+      
         )}
       </div>
     </>
