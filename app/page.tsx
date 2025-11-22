@@ -9,6 +9,7 @@ import PricingSection from "./components/PricingSection";
 import FeaturesSection from "./components/FeaturesSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import FAQSection from "./components/FAQSection";
+import Hero3D from "./components/Hero3D";
 export default function HomePage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -18,12 +19,14 @@ export default function HomePage() {
 <div className="mt-26">
 <Subnav />
 </div>
-      <Hero openConsultation={() => setIsConsultationOpen(true)} />
+      {/* <Hero openConsultation={() => setIsConsultationOpen(true)} /> */}
+      <Hero3D openConsultation={() => setIsConsultationOpen(true)} />
       <ServicesSection />
       <PricingSection openConsultation={() => setIsConsultationOpen(true)} />
         <FeaturesSection />
         <TestimonialsSection />
         <FAQSection />
+        
       <ConsultationModal
         isOpen={isConsultationOpen}
         setIsOpen={setIsConsultationOpen}
