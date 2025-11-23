@@ -20,7 +20,10 @@ export default function HomePage() {
 <Subnav />
 </div>
       {/* <Hero openConsultation={() => setIsConsultationOpen(true)} /> */}
-      <Hero3D openConsultation={() => setIsConsultationOpen(true)} />
+     <div className="w-full max-w-full overflow-hidden fixed sm:static left-0 top-0 sm:relative">
+       <Hero3D openConsultation={() => setIsConsultationOpen(true)} />
+     </div>
+     
       <ServicesSection />
       <PricingSection openConsultation={() => setIsConsultationOpen(true)} />
         <FeaturesSection />
