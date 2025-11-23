@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Subnav from "./components/Subnav";
 import Hero from "./components/Hero";
+import ConsultationModal from "./components/ConsultationForm";
 export default function HomePage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -12,6 +13,10 @@ export default function HomePage() {
    <main className="w-full max-w-full ">
    <Subnav />
    <Hero openConsultation={() => setIsConsultationOpen(true)} />
+   <ConsultationModal
+        isOpen={isConsultationOpen}
+        setIsOpen={setIsConsultationOpen}
+      />
 
    
      
