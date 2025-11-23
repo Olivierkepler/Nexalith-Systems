@@ -3,7 +3,11 @@
 import { useState } from "react";
 import Subnav from "./components/Subnav";
 import Hero from "./components/Hero";
-import ConsultationModal from "./components/ConsultationForm";
+import ServicesSection from "./components/ServicesSection";
+import PricingSection from "./components/PricingSection";
+import FeaturesSection from "./components/FeaturesSection";
+import TestimonialsSection from "./components/TestimonialsSection";
+import FAQSection from "./components/FAQSection";
 export default function HomePage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -13,11 +17,12 @@ export default function HomePage() {
    <main className="w-full max-w-full ">
    <Subnav />
    <Hero openConsultation={() => setIsConsultationOpen(true)} />
-   <ConsultationModal
-        isOpen={isConsultationOpen}
-        setIsOpen={setIsConsultationOpen}
-      />
-
+  
+   <ServicesSection />
+      <PricingSection openConsultation={() => setIsConsultationOpen(true)} />
+        <FeaturesSection />
+        <TestimonialsSection />
+        <FAQSection />
    
      
     
