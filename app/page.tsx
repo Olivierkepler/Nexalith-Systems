@@ -13,7 +13,9 @@ export default function HomePage() {
       
    <main className="w-full max-w-full ">
    <Subnav />
-   <Hero openConsultation={() => setIsConsultationOpen(true)} />
+ <div className="w-full max-w-full overflow-hidden fixed sm:static left-0 top-0 sm:relative">
+ <Hero openConsultation={() => setIsConsultationOpen(true)} />
+ </div>
   
  
   
