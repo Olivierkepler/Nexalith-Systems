@@ -5,8 +5,6 @@ import Subnav from "./components/Subnav";
 import Hero from "../app/components/Hero";
 
 
-import FAQSection from "./components/FAQSection";
-
 export default function HomePage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -18,8 +16,7 @@ export default function HomePage() {
    <Hero openConsultation={() => setIsConsultationOpen(true)} />
   
  
-      
-   <FAQSection />
+  
     
 
     
