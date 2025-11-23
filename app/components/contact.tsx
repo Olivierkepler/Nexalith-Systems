@@ -182,7 +182,7 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-12 pt-20 sm:pt-32 md:pt-40">
+    <div className="relative mx-auto max-w-6xl px-4 py-12 pt-40">
      
 
       <GradientBackdrop />
@@ -199,7 +199,7 @@ export default function ContactForm() {
             <div className="absolute right-0 top-0 h-full w-1 bg-gradient-to-b from-transparent via-blue-100/30 to-transparent" />
           </aside>
 
-          <section className="p-4 sm:p-6 md:p-8">
+          <section className="p-6 sm:p-8">
             <div
               ref={statusRef}
               tabIndex={-1}
@@ -216,12 +216,12 @@ export default function ContactForm() {
                 : ''}
             </div>
 
-            <header className="mb-4 sm:mb-6">
+            <header className="mb-6">
               <Pill>Inquiry Form</Pill>
-              <h3 className="mt-3 text-xl sm:text-2xl font-extrabold tracking-tight text-gray-900">
+              <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-gray-900">
                 Tell us about the project you want to build
               </h3>
-              <p className="mt-1 text-xs sm:text-sm text-gray-600">
+              <p className="mt-1 text-sm text-gray-600">
                 We respond within 1 business day.
               </p>
             </header>
@@ -231,7 +231,7 @@ export default function ContactForm() {
               animate={formShake ? { x: [0, -8, 6, -4, 0] } : {}}
               transition={{ duration: 0.28 }}
             >
-              <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <Field
                   id={nameId}
                   label="Your Name"
@@ -372,7 +372,7 @@ function LeftPane({ state }: { state: FormState }) {
             <span>Business Apps • Portfolio Sites • Service Platforms</span>
           </li>
         </ul>
-        <NeuralNetwork />
+   
         {/* <Image className="w-full h-full justify-center items-center" src="/logo1.png" alt="Nexalith Logo" width={80} height={80} /> */}
         <div className="mt-auto pt-8 text-xs text-gray-500">
           Tip: Press{' '}
