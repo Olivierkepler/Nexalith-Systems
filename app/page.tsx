@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Subnav from "./components/Subnav";
-import Hero from "./components/Hero";
-import ServicesSection from "./components/ServicesSection";
-import PricingSection from "./components/PricingSection";
+import Hero from "../app/components/Hero";
+
+
 import FAQSection from "./components/FAQSection";
 
 export default function HomePage() {
@@ -17,10 +17,11 @@ export default function HomePage() {
    <Subnav />
    <Hero openConsultation={() => setIsConsultationOpen(true)} />
   
-   <ServicesSection />
-   <PricingSection openConsultation={() => setIsConsultationOpen(true)} />
  
+      
    <FAQSection />
+    
+
     
       </main>
     </div>
