@@ -5,7 +5,8 @@ import Subnav from "./components/Subnav";
 import Hero from "./components/Hero";
 import ServicesSection from "./components/ServicesSection";
 import PricingSection from "./components/PricingSection";
-import TestimonialsSection from "./components/TestimonialsSection";
+import FAQSection from "./components/FAQSection";
+
 export default function HomePage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
@@ -19,7 +20,7 @@ export default function HomePage() {
    <ServicesSection />
    <PricingSection openConsultation={() => setIsConsultationOpen(true)} />
  
-   <TestimonialsSection />
+   <FAQSection />
     
       </main>
     </div>
