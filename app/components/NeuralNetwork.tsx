@@ -2,13 +2,12 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
+import { EffectComposer, DepthOfField } from '@react-three/postprocessing'
 import { useMemo, useRef, useEffect } from "react";
 import * as THREE from "three";
 
-import { EffectComposer, DepthOfField } from '@react-three/postprocessing'
-
 /* -----------------------------------------------------------
-   FLOATING PARTICLES (white for contrast)
+   FLOATING PARTICLES (slower + smaller)
 ----------------------------------------------------------- */
 function FloatingParticles({ count = 80 }) {
   const groupRef = useRef<THREE.Group>(null!);
@@ -22,7 +21,7 @@ function FloatingParticles({ count = 80 }) {
           (Math.random() - 0.5) * 3,
           (Math.random() - 0.5) * 3,
         ],
-        speed: 0.001 + Math.random() * 0.002,
+        speed: 0.0003 + Math.random() * 0.0007, // slower
         offset: Math.random() * Math.PI * 2,
       });
     }
@@ -36,8 +35,9 @@ function FloatingParticles({ count = 80 }) {
 
     particles.forEach((p, i) => {
       const mesh = groupRef.current.children[i];
-      mesh.position.y += Math.sin(t * p.speed + p.offset) * 0.002;
-      mesh.position.x += Math.cos(t * p.speed + p.offset) * 0.002;
+
+      mesh.position.y += Math.sin(t * p.speed + p.offset) * 0.0007;
+      mesh.position.x += Math.cos(t * p.speed + p.offset) * 0.0007;
 
       if (mesh.position.y > 2) mesh.position.y = -2;
       if (mesh.position.y < -2) mesh.position.y = 2;
@@ -47,14 +47,14 @@ function FloatingParticles({ count = 80 }) {
   return (
     <group ref={groupRef}>
       {particles.map((p, i) => (
-        <mesh key={i} position={p.position as [number, number, number]}>
-          <sphereGeometry args={[0.025, 12, 12]} />
+        <mesh key={i} position={p.position as any}>
+          <sphereGeometry args={[0.015, 12, 12]} /> {/* Smaller */}
           <meshStandardMaterial
             color="#ffffff"
             emissive="#ffffff"
-            emissiveIntensity={1.2}
+            emissiveIntensity={0.7}
             transparent
-            opacity={0.8}
+            opacity={0.55}
           />
         </mesh>
       ))}
@@ -63,7 +63,7 @@ function FloatingParticles({ count = 80 }) {
 }
 
 /* -----------------------------------------------------------
-   PULSE MOVEMENT (black pulses)
+   PULSE PARTICLES (smaller + slower)
 ----------------------------------------------------------- */
 function PulseLine({
   start,
@@ -79,7 +79,8 @@ function PulseLine({
   );
 
   useFrame(({ clock }) => {
-    const t = (clock.getElapsedTime() % 1);
+    // MUCH SLOWER SPEED
+    const t = (clock.getElapsedTime() * 0.35) % 1;
     const pos = direction.clone().multiplyScalar(t);
 
     pulseRef.current.position.set(
@@ -91,21 +92,22 @@ function PulseLine({
 
   return (
     <mesh ref={pulseRef}>
-      <sphereGeometry args={[0.045, 4, 4]} />
+      {/* Smaller pulse */}
+      <sphereGeometry args={[0.02, 16, 16]} />
       <meshStandardMaterial
         color="#000000"
         emissive="#000000"
-        roughness={1}
-        metalness={0}
         transparent
         opacity={0.35}
+        roughness={1}
+        metalness={0}
       />
     </mesh>
   );
 }
 
 /* -----------------------------------------------------------
-   NEURAL NETWORK
+   NEURAL NETWORK GRAPH
 ----------------------------------------------------------- */
 function NeuralNetwork() {
   const groupRef = useRef<THREE.Group>(null!);
@@ -166,12 +168,12 @@ function NeuralNetwork() {
     groupRef.current.rotation.x += (tx - groupRef.current.rotation.x) * 0.05;
     groupRef.current.rotation.y += (ty - groupRef.current.rotation.y) * 0.05;
 
-    groupRef.current.rotation.y += 0.0007;
+    groupRef.current.rotation.y += 0.0007; // idle animation
   });
 
   return (
     <group ref={groupRef}>
-      {/* Lines */}
+      {/* Black Lines */}
       <group>
         {connections.map((c, i) => {
           const pts = [
@@ -183,11 +185,7 @@ function NeuralNetwork() {
           return (
             <line key={i}>
               <primitive object={geom} attach="geometry" />
-              <lineBasicMaterial
-                color="#000000"
-                transparent
-                opacity={1}
-              />
+              <lineBasicMaterial color="#000000" opacity={1} transparent />
             </line>
           );
         })}
@@ -203,11 +201,11 @@ function NeuralNetwork() {
       {/* Floating Particles */}
       <FloatingParticles count={90} />
 
-      {/* Nodes */}
+      {/* Black Nodes */}
       <group>
         {nodes.map((n, i) => (
           <mesh key={i} position={n.position as any}>
-            <sphereGeometry args={[0.09, 10, 10]} />
+            <sphereGeometry args={[0.09, 24, 24]} />
             <meshStandardMaterial
               color="#000000"
               emissive="#000000"
@@ -222,11 +220,11 @@ function NeuralNetwork() {
 }
 
 /* -----------------------------------------------------------
-   SCENE ROOT
+   ROOT SCENE
 ----------------------------------------------------------- */
 export default function NeuralNetworkScene() {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="absolute  inset-0 z-0">
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
         <ambientLight intensity={0.8} />
         <directionalLight position={[4, 4, 4]} intensity={1.3} />
