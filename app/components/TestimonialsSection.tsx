@@ -26,19 +26,19 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative py-28 bg-white">
+    <section className="relative py-16 sm:py-20 md:py-28 bg-white">
       {/* Background Glow */}
       <div className="absolute inset-0">
         <div className="absolute top-40 right-1/2 translate-x-1/2 w-[800px] h-[800px] rounded-full bg-indigo-200 opacity-20 blur-[180px]" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center text-gray-900"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 px-2"
         >
           Trusted by Companies of All Sizes
         </motion.h2>
@@ -47,13 +47,13 @@ export default function TestimonialsSection() {
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
-          className="mt-4 text-lg text-gray-600 text-center max-w-2xl mx-auto"
+          className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-600 text-center max-w-2xl mx-auto px-2"
         >
           See how WebAIGen is helping businesses automate, scale, and innovate.
         </motion.p>
 
         {/* Testimonials Grid */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-10 sm:mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((item, index) => (
             <motion.div
               key={item.name}
@@ -62,16 +62,16 @@ export default function TestimonialsSection() {
               transition={{ delay: index * 0.12, duration: 0.6 }}
               className="
                 bg-white/70 backdrop-blur-xl shadow-sm border border-gray-200 
-                p-8 rounded-2xl hover:shadow-xl hover:-translate-y-1
+                p-6 sm:p-8 rounded-xl sm:rounded-2xl hover:shadow-xl hover:-translate-y-1
                 transition-all flex flex-col
               "
             >
               {/* Star Rating */}
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-3 sm:mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <span
                     key={i}
-                    className="text-yellow-400 text-xl leading-none"
+                    className="text-yellow-400 text-lg sm:text-xl leading-none"
                   >
                     ★
                   </span>
@@ -79,27 +79,27 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Testimonial Text */}
-              <p className="text-gray-700 leading-relaxed text-sm">
+              <p className="text-gray-700 leading-relaxed text-xs sm:text-sm flex-grow">
                 "{item.text}"
               </p>
 
               {/* Profile */}
-              <div className="flex items-center gap-4 mt-6 pt-4 border-t border-gray-200">
+              <div className="flex items-center gap-3 sm:gap-4 mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-200">
                 {item.avatar ? (
                   <Image
                     src={item.avatar}
                     width={100}
                     height={100}
                     alt={item.name}
-                    className="rounded-full object-cover"
+                    className="rounded-full object-cover w-12 h-12 sm:w-14 sm:h-14"
                   />
                 ) : (
-                  <div className="h-18 w-18 rounded-full bg-gray-300" />
+                  <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-gray-300" />
                 )}
 
                 <div>
-                  <h4 className="text-gray-900 font-semibold">{item.name}</h4>
-                  <p className="text-gray-500 text-sm">{item.role}</p>
+                  <h4 className="text-gray-900 font-semibold text-sm sm:text-base">{item.name}</h4>
+                  <p className="text-gray-500 text-xs sm:text-sm">{item.role}</p>
                 </div>
               </div>
             </motion.div>

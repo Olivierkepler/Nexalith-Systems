@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <>
 
-<div className="mt-26">
+<div className="mt-16 sm:mt-20 md:mt-24">
 <Subnav />
 </div>
       {/* <Hero openConsultation={() => setIsConsultationOpen(true)} /> */}

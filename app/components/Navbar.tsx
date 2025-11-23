@@ -18,20 +18,20 @@ export default function Navbar() {
       {/* Gradient Border */}
       <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-black/20 to-transparent" />
 
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
         
      {/* Brand Logo */}
 <Link
   href="/"
   className="
-    flex items-center gap-3 group
+    flex items-center gap-2 sm:gap-3 group
     transition-all duration-300
   "
 >
   {/* Logo Image */}
   <div
     className="
-      h-12 w-12 rounded-xl overflow-hidden flex items-center justify-center
+      h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden flex items-center justify-center
       shadow-sm bg-white
       transition-all duration-300
       group-hover:shadow-md group-hover:scale-[1.06]
@@ -49,7 +49,7 @@ export default function Navbar() {
   {/* Text */}
   <span
     className="
-      text-2xl font-semibold tracking-tight 
+      text-xl sm:text-2xl font-semibold tracking-tight 
       flex items-center gap-1
       transition-all duration-300 
       group-hover:text-black

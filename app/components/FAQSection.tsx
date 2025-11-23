@@ -35,19 +35,19 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="relative py-28 bg-white">
+    <section className="relative py-16 sm:py-20 md:py-28 bg-white">
       {/* Soft Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-40 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-indigo-200 opacity-20 blur-[180px]" />
       </div>
 
-      <div className="relative max-w-5xl mx-auto px-6">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
         
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold text-gray-900 text-center"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center px-2"
         >
           Frequently Asked Questions
         </motion.h2>
@@ -56,13 +56,13 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mt-4 text-lg text-gray-500 text-center max-w-2xl mx-auto"
+          className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-500 text-center max-w-2xl mx-auto px-2"
         >
           Everything you need to know about our AI solutions and services.
         </motion.p>
 
         {/* FAQ Accordion */}
-        <div className="mt-16 space-y-4">
+        <div className="mt-10 sm:mt-12 md:mt-16 space-y-3 sm:space-y-4">
           {faqs.map((item, index) => (
             <div
               key={index}
@@ -71,15 +71,15 @@ export default function FAQSection() {
               {/* Question Button */}
               <button
                 onClick={() => toggle(index)}
-                className="w-full flex items-center cursor-pointer justify-between px-6 py-5 text-left"
+                className="w-full flex items-center cursor-pointer justify-between px-4 sm:px-6 py-4 sm:py-5 text-left gap-3 sm:gap-4"
               >
-                <span className="text-gray-900 font-medium text-lg">
+                <span className="text-gray-900 font-medium text-base sm:text-lg pr-2">
                   {item.q}
                 </span>
 
                 <ChevronDown
                   className={`
-                    h-5 w-5 text-gray-600 transition-transform
+                    h-4 w-4 sm:h-5 sm:w-5 text-gray-600 transition-transform flex-shrink-0
                     ${openIndex === index ? "rotate-180" : ""}
                   `}
                 />
@@ -94,7 +94,7 @@ export default function FAQSection() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <div className="px-6 pb-5 text-gray-600 text-sm leading-relaxed">
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-gray-600 text-xs sm:text-sm leading-relaxed">
                       {item.a}
                     </div>
                   </motion.div>

@@ -31,7 +31,7 @@ export default function Subnav() {
     <div className="w-full sticky top-[72px] z-40 border-b border-gray-200/60 backdrop-blur-xl bg-white/70 ">
       
       {/* MAIN SUBNAV BAR */}
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-center gap-10 text-gray-700 font-medium">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 sm:py-3 flex items-center justify-center gap-4 sm:gap-6 md:gap-10 text-gray-700 font-medium overflow-x-auto">
         
         <SubnavButton
           label="Services"
@@ -54,7 +54,7 @@ export default function Subnav() {
 
         <Link
           href="/pricing"
-          className="hover:text-black transition font-semibold"
+          className="hover:text-black transition font-semibold whitespace-nowrap text-sm sm:text-base"
         >
           Pricing
         </Link>
@@ -111,7 +111,7 @@ function SubnavButton({
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-1 hover:text-black transition relative font-semibold"
+      className="flex items-center gap-1 hover:text-black transition relative font-semibold whitespace-nowrap text-sm sm:text-base"
     >
       {label}
       <ChevronDown
@@ -145,7 +145,7 @@ function DropdownWrapper({ children }: { children: React.ReactNode }) {
         <div className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-t from-gray-100/40 to-transparent pointer-events-none" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 relative z-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 relative z-20">
         {children}
       </div>
     </motion.div>
