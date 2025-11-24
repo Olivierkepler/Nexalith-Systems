@@ -1,6 +1,6 @@
 "use client";
 
-
+import Chatbot from "./components/Chatbot";
 
 export default function HomePage() {
   return (
@@ -27,6 +27,12 @@ export default function HomePage() {
           <div className="h-64 rounded-2xl bg-white dark:bg-zinc-900 shadow" />
           <div className="h-64 rounded-2xl bg-white dark:bg-zinc-900 shadow" />
         </section>
+
+         {/* ✅ Floating Chatbot Widget */}
+      <div className="fixed bottom-0 right-6 z-50">
+        <Chatbot />
+      </div>
+
 
         {/* Footer Section */}
         <footer className="w-full h-24 rounded-2xl bg-white dark:bg-zinc-900 shadow" />
