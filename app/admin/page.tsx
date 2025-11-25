@@ -18,7 +18,7 @@ import NewUsersNotification from "../components/NewUsersNotification";
 export default function AdminDashboard() {
   const [entries, setEntries] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const [showFilters, setShowFilters] = useState(false);
   // Search + Filters
   const [search, setSearch] = useState("");
   const [emailDomain, setEmailDomain] = useState("all");
@@ -262,91 +262,115 @@ export default function AdminDashboard() {
           </div>
 
           {/* Filters Row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Email Domain */}
-            <div>
-              <label className="block text-sm text-gray-500 mb-1 font-medium">
-                Email Domain
-              </label>
-              <select
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 bg-white text-gray-800 focus:ring-2 focus:ring-indigo-500"
-                value={emailDomain}
-                onChange={(e) => {
-                  setEmailDomain(e.target.value);
-                  setPage(1);
-                }}
+          {/* Collapsible Filters */}
+          <div>
+            <button
+              type="button"
+              onClick={() => setShowFilters((prev: any) => !prev)}
+              className="flex items-center mb-2 gap-2 text-sm font-medium text-indigo-600 hover:underline focus:outline-none"
+              aria-expanded={showFilters}
+              aria-controls="admin-filters-row"
+            >
+              <span>Advanced Filters</span>
+              <span className="transition-transform" style={{
+                transform: showFilters ? "rotate(90deg)" : "rotate(0deg)",
+                display: "inline-block",
+                transition: "transform 0.2s"
+              }}>
+                <ChevronRight className="w-4 h-4" />
+              </span>
+            </button>
+            {showFilters && (
+              <div
+                id="admin-filters-row"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
               >
-                <option value="all">All</option>
-                <option value="gmail.com">gmail.com</option>
-                <option value="outlook.com">outlook.com</option>
-                <option value="yahoo.com">yahoo.com</option>
-              </select>
-            </div>
-
-            {/* Phone */}
-            <div>
-              <label className="block text-sm text-gray-500 mb-1 font-medium">
-                Phone Provided
-              </label>
-              <select
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 bg-white text-gray-800 focus:ring-2 focus:ring-indigo-500"
-                value={hasPhone}
-                onChange={(e) => {
-                  setHasPhone(e.target.value);
-                  setPage(1);
-                }}
-              >
-                <option value="all">All</option>
-                <option value="yes">With Phone</option>
-                <option value="no">No Phone</option>
-              </select>
-            </div>
-
-            {/* Date */}
-            <div className="sm:col-span-2 lg:col-span-1">
-              <label className="block text-sm text-gray-500 mb-1 font-medium">
-                Date Range
-              </label>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <input
-                  type="date"
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 bg-white text-gray-800 text-sm sm:text-base"
-                  value={startDate}
-                  onChange={(e) => {
-                    setStartDate(e.target.value);
-                    setPage(1);
-                  }}
-                />
-                <input
-                  type="date"
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 bg-white text-gray-800 text-sm sm:text-base"
-                  value={endDate}
-                  onChange={(e) => {
-                    setEndDate(e.target.value);
-                    setPage(1);
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* Summary */}
-            <div>
-              <label className="block text-sm text-gray-500 mb-1 font-medium">
-                Summary
-              </label>
-              <div className="rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 text-sm text-gray-700">
-                <div className="flex justify-between">
-                  <span>Visible</span>
-                  <span className="font-semibold">{sortedEntries.length}</span>
+                {/* Email Domain */}
+                <div>
+                  <label className="block text-sm text-gray-500 mb-1 font-medium">
+                    Email Domain
+                  </label>
+                  <select
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 bg-white text-gray-800 focus:ring-2 focus:ring-indigo-500"
+                    value={emailDomain}
+                    onChange={(e) => {
+                      setEmailDomain(e.target.value);
+                      setPage(1);
+                    }}
+                  >
+                    <option value="all">All</option>
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="outlook.com">outlook.com</option>
+                    <option value="yahoo.com">yahoo.com</option>
+                  </select>
                 </div>
-                <div className="flex justify-between mt-1">
-                  <span>Page</span>
-                  <span className="font-semibold">
-                    {page} / {totalPages || 1}
-                  </span>
+
+                {/* Phone */}
+                <div>
+                  <label className="block text-sm text-gray-500 mb-1 font-medium">
+                    Phone Provided
+                  </label>
+                  <select
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 bg-white text-gray-800 focus:ring-2 focus:ring-indigo-500"
+                    value={hasPhone}
+                    onChange={(e) => {
+                      setHasPhone(e.target.value);
+                      setPage(1);
+                    }}
+                  >
+                    <option value="all">All</option>
+                    <option value="yes">With Phone</option>
+                    <option value="no">No Phone</option>
+                  </select>
+                </div>
+
+                {/* Date */}
+                <div className="sm:col-span-2 lg:col-span-1">
+                  <label className="block text-sm text-gray-500 mb-1 font-medium">
+                    Date Range
+                  </label>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <input
+                      type="date"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 bg-white text-gray-800 text-sm sm:text-base"
+                      value={startDate}
+                      onChange={(e) => {
+                        setStartDate(e.target.value);
+                        setPage(1);
+                      }}
+                    />
+                    <input
+                      type="date"
+                      className="w-full rounded-lg border border-gray-300 px-3 py-2 bg-white text-gray-800 text-sm sm:text-base"
+                      value={endDate}
+                      onChange={(e) => {
+                        setEndDate(e.target.value);
+                        setPage(1);
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Summary */}
+                <div>
+                  <label className="block text-sm text-gray-500 mb-1 font-medium">
+                    Summary
+                  </label>
+                  <div className="rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 text-sm text-gray-700">
+                    <div className="flex justify-between">
+                      <span>Visible</span>
+                      <span className="font-semibold">{sortedEntries.length}</span>
+                    </div>
+                    <div className="flex justify-between mt-1">
+                      <span>Page</span>
+                      <span className="font-semibold">
+                        {page} / {totalPages || 1}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
 
