@@ -28,7 +28,7 @@ export default function Subnav() {
   };
 
   return (
-    <div className="w-full py-2 sticky top-[70px] z-40 border-b border-gray-200/60 backdrop-blur-xl bg-white/70 ">
+    <div className="w-full sticky py-4 top-[82px] z-40 border-b border-gray-200/60 backdrop-blur-xl bg-white/70 ">
       
       {/* MAIN SUBNAV BAR */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 sm:py-3 flex items-center justify-center gap-4 sm:gap-6 md:gap-10 text-gray-700 font-medium overflow-x-auto">
