@@ -11,6 +11,7 @@ export default function HomePage() {
 
         {/* Hero Section */}
         <motion.section
+          id="hero-section"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -31,6 +32,7 @@ export default function HomePage() {
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {content.features.map((feature, i) => (
             <motion.div
+              id={`feature-${i}`}
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -52,6 +54,7 @@ export default function HomePage() {
 
         {/* Wide Centerpiece Section */}
         <motion.section
+          id="centerpiece-section"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -72,6 +75,7 @@ export default function HomePage() {
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {content.grid.map((item, i) => (
             <motion.div
+              id={`grid-${i}`}
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -98,6 +102,7 @@ export default function HomePage() {
 
         {/* Footer Section */}
         <motion.footer
+          id="footer-section"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
