@@ -1,0 +1,38 @@
+{
+    "hero": {
+      "title": "Your hero section title",
+      "subtitle": "Your hero section subtitle or description"
+    },
+    "features": [
+      {
+        "title": "Feature Box 1",
+        "text": "Short text for feature 1."
+      },
+      {
+        "title": "Feature Box 2",
+        "text": "Short text for feature 2."
+      },
+      {
+        "title": "Feature Box 3",
+        "text": "Short text for feature 3."
+      }
+    ],
+    "centerpiece": {
+      "title": "Wide Centerpiece Title",
+      "text": "Your descriptive content..."
+    },
+    "grid": [
+      {
+        "title": "Left Grid Block",
+        "text": "Text for the left grid block."
+      },
+      {
+        "title": "Right Grid Block",
+        "text": "Text for the right grid block."
+      }
+    ],
+    "footer": {
+      "text": "Footer text or short description."
+    }
+  }
+  

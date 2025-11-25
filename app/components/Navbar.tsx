@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Searcher from "./Searcher";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const navItems = [
     { label: "Home", href: "/" },
-   
     { label: "Contact", href: "/contact" },
   ];
 
@@ -20,46 +20,32 @@ export default function Navbar() {
 
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
         
-     {/* Brand Logo */}
-<Link
-  href="/"
-  className="
-    flex items-center gap-2 sm:gap-3 group
-    transition-all duration-300
-  "
->
-  {/* Logo Image */}
-  <div
-    className="
-      h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden flex items-center justify-center
-      shadow-sm bg-white
-      transition-all duration-300
-      group-hover:shadow-md group-hover:scale-[1.06]
-    "
-  >
-    <img
-      src="/logo1.png"
-      alt="WebAIGen Logo"
-      width={48}
-      height={48}
-      className="object-contain"
-    />
-  </div>
+        {/* Brand Logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-2 sm:gap-3 group transition-all duration-300"
+        >
+          <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden flex items-center justify-center shadow-sm bg-white transition-all duration-300 group-hover:shadow-md group-hover:scale-[1.06]">
+            <img
+              src="/logo1.png"
+              alt="WebAIGen Logo"
+              width={48}
+              height={48}
+              className="object-contain"
+            />
+          </div>
 
-  {/* Text */}
-  <span
-    className="
-      text-xl sm:text-2xl font-semibold tracking-tight 
-      flex items-center gap-1
-      transition-all duration-300 
-      group-hover:text-black
-    "
-  >
-      Web<span className="text-orange-500 group-hover:text-orange-600 transition">AI</span>Gen</span>
-</Link>
+          <span className="text-xl sm:text-2xl font-semibold tracking-tight flex items-center gap-1 transition-all duration-300 group-hover:text-black">
+            Web
+            <span className="text-orange-500 group-hover:text-orange-600 transition">
+              AI
+            </span>
+            Gen
+          </span>
+        </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
             <Link
               key={item.label}
@@ -67,11 +53,11 @@ export default function Navbar() {
               className="relative text-sm font-medium text-gray-700 hover:text-black transition"
             >
               {item.label}
-
-              {/* Hover Underline */}
-              <span className="absolute left-0 -bottom-1 h-[1.5px] w-0 bg-black transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
+
+          {/* 🔎 Desktop Searcher */}
+          <Searcher />
         </div>
 
         {/* Mobile Button */}
@@ -98,6 +84,11 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+
+            {/* 🔎 Mobile Searcher */}
+            <div className="pt-2">
+              <Searcher />
+            </div>
           </div>
         </div>
       )}
