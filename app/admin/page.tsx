@@ -351,7 +351,7 @@ export default function AdminDashboard() {
         </section>
 
         {/* Results */}
-        <section className="bg-white p border border-gray-200 shadow-sm rounded-xl overflow-hidden">
+        <section className="bg-white border border-gray-200 shadow-sm rounded-xl overflow-hidden">
           {loading ? (
             <div className="p-12 text-center text-gray-500">Loading...</div>
           ) : sortedEntries.length === 0 ? (
@@ -361,7 +361,7 @@ export default function AdminDashboard() {
           ) : (
             <>
               <div className="overflow-x-auto -mx-4 sm:mx-0">
-                <table className="w-full px-4 text-xs sm:text-sm min-w-[640px]">
+                <table className="w-full text-xs sm:text-sm min-w-[640px]">
                   <thead className="bg-gray-50 border-b border-gray-200 text-gray-600 text-xs uppercase">
                     <tr>
                       <th className="p-2 sm:p-3 text-left">Name</th>
