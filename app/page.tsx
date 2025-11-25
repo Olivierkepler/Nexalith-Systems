@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function HomePage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-black dark:to-zinc-950 font-sans p-4">
-      <div className="w-full mt-18 max-w-7xl flex flex-col gap-10">
+      <div className="w-full mt-16 max-w-7xl flex flex-col gap-10">
         {/* Hero Section */}
         <motion.section
           initial={{ opacity: 0, y: 60 }}
