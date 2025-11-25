@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Home",
+    "slug": "/",
+    "content": "\"use client\"; return ( /* Top Navigation */ N Nexalith Explore · Create · Search About Docs Search ⌘K / Ctrl+K /* Hero Section */ content.hero.title content.hero.subtitle Press ⌘K or \" \" Ctrl+K anytime to open the command palette and search across pages. /* Feature Grid Section */ content.features.map((feature, i) => ( feature.title feature.text )) /* Wide Centerpiece Section */ content.centerpiece.title content.centerpiece.text /* Additional Grid Section */ content.grid.map((item, i) => ( item.title item.text )) /* Chatbot Floating */ /* Footer Section */ content.footer.text );"
+  },
+  {
+    "title": "About",
+    "slug": "/about",
+    "content": "return ( About Welcome to Nexalith — a space designed for exploration, creation, and powerful digital tools. Our goal is to build elegant experiences that help users interact with information in meaningful ways. This project is evolving rapidly, and new features like search, content indexing, and interactive pages are actively being expanded. );"
+  },
+  {
+    "title": "Contact",
+    "slug": "/contact",
+    "content": "return ( Contact )"
+  },
+  {
+    "title": "Docs",
+    "slug": "/docs",
+    "content": "return ( Documentation Welcome to the Nexalith documentation. Start here to understand the project, its features, and how to work with the system. Getting Started Learn how to begin working with Nexalith and explore its core structure. );"
+  },
+  {
+    "title": "Getting Started",
+    "slug": "/docs/getting-started",
+    "content": "return ( Getting Started This guide will help you get familiar with the structure and workflow of the Nexalith project. Whether you're building pages, integrating search, or expanding features, this is the place to start. Project Overview Nexalith uses a clean architecture built around the App Router, TypeScript, TailwindCSS, and a custom search indexing system powered by your own scripts. Next Steps Create more pages to expand the searchable content. Add metadata or tags to enhance search relevance. Integrate components and layout elements for consistency. );"
+  }
+]

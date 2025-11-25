@@ -1,0 +1,58 @@
+[
+  {
+    "page": "home",
+    "section": "Hero",
+    "id": "hero-section",
+    "title": "Your hero section title",
+    "text": "Your hero section subtitle or description"
+  },
+  {
+    "page": "home",
+    "section": "Feature 1",
+    "id": "feature-0",
+    "title": "Feature Box 1",
+    "text": "Short text for feature 1."
+  },
+  {
+    "page": "home",
+    "section": "Feature 2",
+    "id": "feature-1",
+    "title": "Feature Box 2",
+    "text": "Short text for feature 2."
+  },
+  {
+    "page": "home",
+    "section": "Feature 3",
+    "id": "feature-2",
+    "title": "Feature Box 3",
+    "text": "Short text for feature 3."
+  },
+  {
+    "page": "home",
+    "section": "Centerpiece",
+    "id": "centerpiece-section",
+    "title": "Wide Centerpiece Title",
+    "text": "Your descriptive content..."
+  },
+  {
+    "page": "home",
+    "section": "Grid Block 1",
+    "id": "grid-0",
+    "title": "Left Grid Block",
+    "text": "Text for the left grid block."
+  },
+  {
+    "page": "home",
+    "section": "Grid Block 2",
+    "id": "grid-1",
+    "title": "Right Grid Block",
+    "text": "Text for the right grid block."
+  },
+  {
+    "page": "home",
+    "section": "Footer",
+    "id": "footer-section",
+    "title": "Footer",
+    "text": "Footer text or short description."
+  }
+]

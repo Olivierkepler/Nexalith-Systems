@@ -6,13 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build-search-compile": "tsc -p tsconfig.scripts.json",
+    "build-search": "npm run build-search-compile && node dist/scripts/build-search-index.js"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.0",
     "@react-three/postprocessing": "^3.0.4",
     "framer-motion": "^12.23.24",
+    "fuse.js": "^7.1.0",
     "googleapis": "^166.0.0",
     "highlight.js": "^11.11.1",
     "jspdf": "^3.0.4",
@@ -37,6 +40,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }

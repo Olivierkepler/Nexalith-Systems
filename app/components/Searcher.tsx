@@ -1,116 +1,57 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { Search, X } from "lucide-react";
-import content from "@/content/home.json";
+import searchIndex from "@/content/search-index.json";
 
-interface SearchResult {
+interface Result {
+  page: string;
   section: string;
+  id: string;
   title: string;
-  snippet: string;
-  id: string; // used to scroll into view
+  text: string;
 }
 
 export default function Searcher() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SearchResult[]>([]);
+  const [results, setResults] = useState<Result[]>([]);
+  const router = useRouter();
+  const pathname = usePathname();
 
-  // highlight helper
   const highlight = (text: string, q: string) => {
-    if (!q) return text;
-
     const regex = new RegExp(`(${q})`, "gi");
     return text.replace(regex, "<mark class='bg-yellow-200'>$1</mark>");
   };
 
-  // SEARCH LOGIC
   useEffect(() => {
-    if (!query.trim()) {
-      setResults([]);
-      return;
-    }
+    if (!query.trim()) return setResults([]);
 
     const q = query.toLowerCase();
-    const found: SearchResult[] = [];
+    const filtered = searchIndex.filter(
+      (item: Result) =>
+        item.title.toLowerCase().includes(q) ||
+        item.text.toLowerCase().includes(q)
+    );
 
-    // HERO
-    if (
-      content.hero.title.toLowerCase().includes(q) ||
-      content.hero.subtitle.toLowerCase().includes(q)
-    ) {
-      found.push({
-        section: "Hero",
-        title: content.hero.title,
-        snippet: content.hero.subtitle,
-        id: "hero-section",
-      });
-    }
-
-    // FEATURES
-    content.features.forEach((f, index) => {
-      if (
-        f.title.toLowerCase().includes(q) ||
-        f.text.toLowerCase().includes(q)
-      ) {
-        found.push({
-          section: `Feature ${index + 1}`,
-          title: f.title,
-          snippet: f.text,
-          id: `feature-${index}`,
-        });
-      }
-    });
-
-    // CENTERPIECE
-    if (
-      content.centerpiece.title.toLowerCase().includes(q) ||
-      content.centerpiece.text.toLowerCase().includes(q)
-    ) {
-      found.push({
-        section: "Centerpiece",
-        title: content.centerpiece.title,
-        snippet: content.centerpiece.text,
-        id: "centerpiece-section",
-      });
-    }
-
-    // GRID BLOCKS
-    content.grid.forEach((g, index) => {
-      if (
-        g.title.toLowerCase().includes(q) ||
-        g.text.toLowerCase().includes(q)
-      ) {
-        found.push({
-          section: `Grid Block ${index + 1}`,
-          title: g.title,
-          snippet: g.text,
-          id: `grid-${index}`,
-        });
-      }
-    });
-
-    // FOOTER
-    if (content.footer.text.toLowerCase().includes(q)) {
-      found.push({
-        section: "Footer",
-        title: "Footer",
-        snippet: content.footer.text,
-        id: "footer-section",
-      });
-    }
-
-    setResults(found);
+    setResults(filtered);
   }, [query]);
 
-  // scroll handler
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  const handleClick = (result: Result) => {
     setOpen(false);
     setQuery("");
+
+    // If already on same page → scroll
+    if (pathname === `/${result.page === "home" ? "" : result.page}`) {
+      document.getElementById(result.id)?.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    } else {
+      // Navigate → scroll when loaded
+      router.push(`/${result.page === "home" ? "" : result.page}` + `#${result.id}`);
+    }
   };
 
   return (
@@ -125,63 +66,53 @@ export default function Searcher() {
       )}
 
       {open && (
-        <div className="absolute right-0 top-0 bg-white shadow-xl rounded-xl border border-gray-200 p-2 w-72 sm:w-80 z-50">
-          {/* SEARCH INPUT */}
+        <div className="absolute right-0 top-0 w-80 bg-white border shadow-xl rounded-xl p-2 z-50">
           <div className="flex items-center gap-2">
             <input
-              type="text"
-              className="w-full rounded-lg border border-gray-300 px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500"
-              placeholder="Search website content..."
+              className="w-full px-3 py-1.5 border rounded-lg text-sm focus:ring-2 focus:ring-indigo-500"
+              placeholder="Search all pages..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               autoFocus
             />
-
             <button
               onClick={() => {
                 setOpen(false);
                 setQuery("");
               }}
-              className="p-1 rounded-full hover:bg-gray-200/50 transition"
+              className="p-1 rounded hover:bg-gray-200"
             >
-              <X className="h-4 w-4 text-gray-600" />
+              <X className="h-4 w-4" />
             </button>
           </div>
 
-          {/* RESULTS LIST */}
-          {query && (
-            <div className="mt-2 max-h-60 overflow-y-auto">
-              {results.length > 0 ? (
-                results.map((r, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => scrollToSection(r.id)}
-                    className="p-2 rounded-md hover:bg-gray-100 cursor-pointer"
-                  >
-                    <p className="text-xs font-semibold text-gray-500">
-                      {r.section}
-                    </p>
+          <div className="mt-2 max-h-64 overflow-y-auto">
+            {results.length === 0 ? (
+              <p className="text-sm text-gray-500 p-2">No results</p>
+            ) : (
+              results.map((r, i) => (
+                <div
+                  key={i}
+                  onClick={() => handleClick(r)}
+                  className="p-2 cursor-pointer rounded hover:bg-gray-100"
+                >
+                  <p className="text-xs font-semibold text-gray-500">
+                    {r.page.toUpperCase()} — {r.section}
+                  </p>
 
-                    <p
-                      className="text-sm font-medium text-gray-900"
-                      dangerouslySetInnerHTML={{
-                        __html: highlight(r.title, query),
-                      }}
-                    />
+                  <p
+                    className="text-sm font-medium"
+                    dangerouslySetInnerHTML={{ __html: highlight(r.title, query) }}
+                  />
 
-                    <p
-                      className="text-xs text-gray-600"
-                      dangerouslySetInnerHTML={{
-                        __html: highlight(r.snippet, query),
-                      }}
-                    />
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-gray-500 p-2">No results found</p>
-              )}
-            </div>
-          )}
+                  <p
+                    className="text-xs text-gray-600"
+                    dangerouslySetInnerHTML={{ __html: highlight(r.text, query) }}
+                  />
+                </div>
+              ))
+            )}
+          </div>
         </div>
       )}
     </div>

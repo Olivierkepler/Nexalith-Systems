@@ -1,13 +1,37 @@
 "use client";
 
+import Link from "next/link";
 import Chatbot from "./components/Chatbot";
 import { motion } from "framer-motion";
 import content from "@/content/home.json";
+import Searcher from "./components/Searcher";
 
 export default function HomePage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-black dark:to-zinc-950 font-sans p-4">
       <div className="w-full mt-16 max-w-7xl flex flex-col gap-10">
+
+        {/* Top Navigation */}
+        <header className="flex items-center justify-between px-2 sm:px-1">
+          <div className="flex items-center gap-2">
+            <span className="h-8 w-8 rounded-xl bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center text-xs font-bold text-white dark:text-zinc-900">
+              W
+               </span>
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                WebAIGen
+              </span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                Explore · Create · Search
+              </span>
+            </div>
+          </div>
+
+          <nav className="flex items-center gap-2 text-xs sm:text-sm">
+           {/* 🔎 Desktop Searcher Component */}
+           <Searcher />
+          </nav>
+        </header>
 
         {/* Hero Section */}
         <motion.section
@@ -18,12 +42,17 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
           className="relative w-full h-72 sm:h-80 md:h-96 rounded-3xl bg-white/70 dark:bg-zinc-900/70 shadow-xl backdrop-blur-xl border border-zinc-300/40 dark:border-zinc-700/40 hover:shadow-2xl transition-all duration-500"
         >
-          <div className="absolute inset-0 p-6 flex flex-col justify-center">
+          <div className="absolute inset-0 p-6 flex flex-col justify-center gap-2">
             <h1 className="text-2xl md:text-4xl font-bold text-zinc-900 dark:text-white">
               {content.hero.title}
             </h1>
-            <p className="mt-2 text-zinc-700 dark:text-zinc-300">
+            <p className="mt-1 text-zinc-700 dark:text-zinc-300">
               {content.hero.subtitle}
+            </p>
+            <p className="mt-3 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+              Press <span className="border rounded px-1 py-0.5 text-[11px]">⌘K</span> or{" "}
+              <span className="border rounded px-1 py-0.5 text-[11px]">Ctrl+K</span> anytime to open
+              the command palette and search across pages.
             </p>
           </div>
         </motion.section>

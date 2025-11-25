@@ -10,57 +10,66 @@ export default function Navbar() {
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Contact", href: "/contact" },
+    { label: "About", href: "/about" },
+    { label: "Docs", href: "/docs" },
+    { label: "Contact", href: "/contact" }
   ];
 
   return (
-    <header className="fixed top-0 z-50 w-full backdrop-blur-xl bg-white/70 border-b border-transparent">
+    <header className="fixed top-0 z-50 w-full backdrop-blur-xl bg-white/70 dark:bg-black/40 border-b border-transparent">
       {/* Gradient Border */}
       <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-black/20 to-transparent" />
 
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
         
-        {/* Brand Logo */}
+        {/* Brand Section (Like Your Hero Nav) */}
         <Link
           href="/"
-          className="flex items-center gap-2 sm:gap-3 group transition-all duration-300"
+          className="flex items-center gap-2 group transition-all duration-300"
         >
-          <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden flex items-center justify-center shadow-sm bg-white transition-all duration-300 group-hover:shadow-md group-hover:scale-[1.06]">
-            <img
-              src="/logo1.png"
-              alt="WebAIGen Logo"
-              width={48}
-              height={48}
-              className="object-contain"
-            />
+          <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden flex items-center justify-center shadow-sm bg-white dark:bg-zinc-900 transition-all duration-300 group-hover:shadow-md group-hover:scale-[1.06]">
+            <span className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+              <img src="/logo1.png" alt="Nexalith Logo" width={40} height={40} className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden flex items-center justify-center shadow-sm bg-white dark:bg-zinc-900 transition-all duration-300 group-hover:shadow-md group-hover:scale-[1.06]" />
+            </span>
           </div>
 
-          <span className="text-xl sm:text-2xl font-semibold tracking-tight flex items-center gap-1 transition-all duration-300 group-hover:text-black">
-            Web
-            <span className="text-orange-500 group-hover:text-orange-600 transition">
-              AI
+          <div className="flex flex-col leading-none">
+            <span className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+              WebAIGen
             </span>
-            Gen
-          </span>
+            <span className="text-xs text-zinc-500 dark:text-zinc-400">
+              Explore · Create · Search
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center gap-4 lg:gap-6">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="relative text-sm font-medium text-gray-700 hover:text-black transition"
+              className="px-3 py-1.5 rounded-full border border-zinc-300/70 dark:border-zinc-700/70 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition text-sm font-medium"
             >
               {item.label}
             </Link>
           ))}
 
-          {/* 🔎 Desktop Searcher */}
-          <Searcher />
+          {/* Search button like original */}
+          <Link
+            href="/search"
+            className="hidden lg:inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-zinc-300/70 dark:border-zinc-700/70 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition text-sm"
+          >
+            <span>Search</span>
+            <span className="text-[10px] text-zinc-500 dark:text-zinc-400 border border-zinc-300/70 dark:border-zinc-700/70 rounded px-1 py-0.5">
+              ⌘K / Ctrl+K
+            </span>
+          </Link>
+
+         
         </div>
 
-        {/* Mobile Button */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden p-2 rounded-md cursor-pointer border border-gray-300 hover:border-black transition"
@@ -70,20 +79,32 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Dropdown */}
       {open && (
-        <div className="md:hidden bg-white/90 backdrop-blur-lg border-b border-gray-200 shadow-sm">
+        <div className="md:hidden bg-white/90 dark:bg-black/80 backdrop-blur-lg border-b border-gray-200 dark:border-zinc-800 shadow-sm">
           <div className="flex flex-col px-6 py-4 space-y-4">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-gray-700 text-base font-medium hover:text-black transition"
+                className="text-gray-700 dark:text-zinc-200 text-base font-medium hover:text-black dark:hover:text-white transition"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
+
+            {/* Search shortcut link */}
+            <Link
+              href="/search"
+              className="flex items-center gap-2 text-gray-700 dark:text-zinc-200 text-base hover:text-black dark:hover:text-white transition"
+              onClick={() => setOpen(false)}
+            >
+              Search
+              <span className="text-[10px] border border-zinc-300/70 dark:border-zinc-700/70 rounded px-1 py-0.5 text-zinc-500 dark:text-zinc-400">
+                ⌘K / Ctrl+K
+              </span>
+            </Link>
 
             {/* 🔎 Mobile Searcher */}
             <div className="pt-2">
