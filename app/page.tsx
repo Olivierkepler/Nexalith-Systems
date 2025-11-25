@@ -129,21 +129,7 @@ export default function HomePage() {
           <Chatbot />
         </div>
 
-        {/* Footer Section */}
-        <motion.footer
-          id="footer-section"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative w-full h-20 sm:h-24 rounded-3xl bg-white/70 dark:bg-zinc-900/70 shadow-xl backdrop-blur-xl border border-zinc-300/40 dark:border-zinc-700/40"
-        >
-          <div className="absolute inset-0 flex items-center justify-center p-4">
-            <p className="text-center text-sm text-zinc-700 dark:text-zinc-300">
-              {content.footer.text}
-            </p>
-          </div>
-        </motion.footer>
+      
       </div>
     </div>
   );
