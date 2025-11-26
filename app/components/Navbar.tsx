@@ -28,8 +28,8 @@ export default function Navbar() {
           className="flex items-center gap-2 group transition-all duration-300"
         >
           <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden flex items-center justify-center shadow-sm bg-white dark:bg-zinc-900 transition-all duration-300 group-hover:shadow-md group-hover:scale-[1.06]">
-            <span className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
-              <img src="/logo1.png" alt="Nexalith Logo" width={40} height={40} className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden flex items-center justify-center shadow-sm bg-white dark:bg-zinc-900 transition-all duration-300 group-hover:shadow-md group-hover:scale-[1.06]" />
+            <span >
+              <img src="/logo1.png" alt="Nexalith Logo" width={40} height={40} className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden flex items-center justify-center shadow-sm bg-white  transition-all duration-300 group-hover:shadow-md group-hover:scale-[1.06]" />
             </span>
           </div>
 
