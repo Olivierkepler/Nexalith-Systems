@@ -29,7 +29,7 @@ export default function Subnav() {
   return (
     <div
       className="
-        w-full mt-17 relative z-20
+        w-full mt-17 relative z-20 py-4
         border-b border-gray-200/60 dark:border-gray-800/60
         backdrop-blur-xl bg-white/70 dark:bg-black/70
       "
