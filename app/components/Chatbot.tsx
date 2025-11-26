@@ -456,7 +456,7 @@ export default function Chatbot() {
             fixed z-50 bottom-4 right-4 
             p-3 sm:p-4 rounded-full shadow-2xl
             transition-all duration-300 cursor-pointer 
-            bg-gradient-to-br from-orange-500 to-orange-600
+          
             hover:scale-110 hover:shadow-[0_0_20px_rgba(255,140,0,0.6)]
             text-white flex items-center justify-center
           "

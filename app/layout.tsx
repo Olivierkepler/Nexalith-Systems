@@ -5,6 +5,7 @@ import SessionProviderWrapper from "./components/SessionProviderWrapper";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Subnav from "./components/Subnav";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,21 +26,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+
+        {/* Main top navbar */}
         <Navbar />
+
+        {/* Scroll-aware subnav */}
         <Subnav />
+
         <SessionProviderWrapper>
-          {children}
+          {/* Main content offset below both navbars */}
+          <main className="pt-[70px]">
+            {children}
+          </main>
         </SessionProviderWrapper>
+
         <Footer />
       </body>
     </html>

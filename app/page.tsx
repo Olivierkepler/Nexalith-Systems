@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import Chatbot from "./components/Chatbot";
 import { motion } from "framer-motion";
 import content from "@/content/home.json";
 import Searcher from "./components/Searcher";
+
+
 
 export default function HomePage() {
   return (
@@ -29,7 +30,7 @@ export default function HomePage() {
 
           <nav className="flex items-center gap-2 text-xs sm:text-sm">
            {/* 🔎 Desktop Searcher Component */}
-           <Searcher />
+          <Searcher />
           </nav>
         </header>
 

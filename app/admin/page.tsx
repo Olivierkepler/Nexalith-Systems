@@ -210,8 +210,8 @@ export default function AdminDashboard() {
 
   // UI
   return (
-    <main className="min-h-screen bg-white text-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-6 sm:space-y-8">
+    <main className="min-h-screen bg-white text-gray-900  ">
+      <div className="max-w-7xl  mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-6 sm:space-y-8">
         {/* Header */}
         <header className="flex pt-16 sm:pt-20 flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>

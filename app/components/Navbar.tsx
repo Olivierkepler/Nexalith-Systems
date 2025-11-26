@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import Searcher from "./Searcher";
+import { Menu, SearchIcon, X } from "lucide-react";
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -60,6 +60,7 @@ export default function Navbar() {
             href="/search"
             className="hidden lg:inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-zinc-300/70 dark:border-zinc-700/70 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition text-sm"
           >
+           <SearchIcon className="h-5 w-5 text-gray-700" />
             <span>Search</span>
             <span className="text-[10px] text-zinc-500 dark:text-zinc-400 border border-zinc-300/70 dark:border-zinc-700/70 rounded px-1 py-0.5">
               ⌘K / Ctrl+K
@@ -106,10 +107,7 @@ export default function Navbar() {
               </span>
             </Link>
 
-            {/* 🔎 Mobile Searcher */}
-            <div className="pt-2">
-              <Searcher />
-            </div>
+          
           </div>
         </div>
       )}

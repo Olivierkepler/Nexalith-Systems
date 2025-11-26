@@ -106,8 +106,8 @@ export default function SearchPage() {
   
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-10">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen  bg-gray-50 px-4 py-10">
+      <div className="max-w-2xl mt-32 mx-auto">
         {/* Header + inline search bar as backup */}
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-semibold tracking-tight">Search</h1>
