@@ -30,8 +30,8 @@ export default function Subnav() {
     <div
       className="
         w-full mt-17 relative z-20
-        border-b border-gray-200/60 
-        backdrop-blur-xl bg-white/70
+        border-b border-gray-200/60 dark:border-gray-800/60
+        backdrop-blur-xl bg-white/70 dark:bg-black/70
       "
     >
       {/* MAIN SUBNAV BAR */}

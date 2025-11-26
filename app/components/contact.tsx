@@ -182,7 +182,7 @@ export default function ContactForm() {
   }, []);
 
   return (
-    <div className="relative mx-auto max-w-6xl px-4 py-12 pt-40">
+    <div className="relative mx-auto max-w-6xl px-4 py-12 ">
      
 
       <GradientBackdrop />

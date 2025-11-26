@@ -5,7 +5,7 @@ export default function ContactPage() {
         <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans ">
             <div >
            
-           <h1 className="text-4xl font-bold mt-32 text-center">Contact</h1>
+           <h1 className="text-4xl font-bold text-center">Contact</h1>
             <ContactForm />
             </div>
         </div>
