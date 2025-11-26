@@ -1,34 +1,70 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 
-const HOME_PATH = path.join(process.cwd(), "content", "home.json");
+const GIST_ID = process.env.GIST_ID!;
+const TOKEN = process.env.GITHUB_GIST_TOKEN!;
+const FILE_NAME = "home.json";
+
+const GITHUB_API = `https://api.github.com/gists/${GIST_ID}`;
 
 export async function GET() {
   try {
-    const raw = fs.readFileSync(HOME_PATH, "utf-8");
-    const data = JSON.parse(raw);
-    return NextResponse.json(data);
+    const res = await fetch(GITHUB_API, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      cache: "no-cache", // always fetch latest gist data
+    });
+
+    if (!res.ok) {
+      console.error("🔥 Error fetching Gist:", await res.text());
+      return NextResponse.json({ error: "Failed to load content" }, { status: 500 });
+    }
+
+    const data = await res.json();
+    const file = data.files?.[FILE_NAME];
+
+    if (!file) {
+      console.error("⚠️ home.json not found in gist");
+      return NextResponse.json({ error: "home.json missing in gist" }, { status: 404 });
+    }
+
+    return NextResponse.json(JSON.parse(file.content));
   } catch (err) {
-    console.error("Error reading home.json", err);
-    return NextResponse.json({ error: "Failed to read content" }, { status: 500 });
+    console.error("🔥 Exception while reading Gist:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
 
 export async function PUT(req: Request) {
   try {
-    const body = await req.json();
+    const newContent = await req.json();
 
-    // Very light validation
-    if (!body.hero || !body.hero.title) {
-      return NextResponse.json({ error: "Invalid content" }, { status: 400 });
+    const body = {
+      files: {
+        [FILE_NAME]: {
+          content: JSON.stringify(newContent, null, 2),
+        },
+      },
+    };
+
+    const res = await fetch(GITHUB_API, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      console.error("🔥 Error updating Gist:", await res.text());
+      return NextResponse.json({ error: "Failed to save content" }, { status: 500 });
     }
 
-    fs.writeFileSync(HOME_PATH, JSON.stringify(body, null, 2), "utf-8");
-
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("Error writing home.json", err);
-    return NextResponse.json({ error: "Failed to write content" }, { status: 500 });
+    console.error("🔥 Exception while writing to Gist:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
