@@ -799,7 +799,7 @@ export default function Chatbot() {
                 {/* Quick Replies */}
                 <div className="flex gap-2 flex-wrap mt-3 overflow-x-auto pb-1">
                   {/* First 2 buttons */}
-                  {["Get a Quote (Room Size)", "Kitchen Remodel"].map((label) => (
+                  {/* {["Get a Quote (Room Size)", "Kitchen Remodel"].map((label) => (
                     <button
                       key={label}
                       onClick={() =>
@@ -818,10 +818,10 @@ export default function Chatbot() {
                     >
                       {label}
                     </button>
-                  ))}
+                  ))} */}
 
                   {/* Dropdown */}
-                  <div className="relative">
+                  {/* <div className="relative">
                     <button
                       onClick={() => setShowMore((prev) => !prev)}
                       className={`
@@ -871,7 +871,7 @@ export default function Chatbot() {
                         )}
                       </div>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
