@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import {
   ChevronDown,
@@ -21,47 +21,24 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Subnav() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const [visible, setVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   const toggle = (menu: string) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
 
-  // Scroll-aware visibility: scroll UP → show, scroll DOWN → hide
-  useEffect(() => {
-    const handleScroll = () => {
-      const current = window.scrollY;
-
-      if (current < lastScrollY) {
-        setVisible(true); // scrolling UP → show
-      } else {
-        setVisible(false); // scrolling DOWN → hide
-      }
-
-      setLastScrollY(current);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
   return (
-    <motion.div
-      initial={{ y: 0 }}
-      animate={{ y: visible ? 0 : -80 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
+    <div
       className="
-        w-full sticky top-[72px] z-40 
+        w-full mt-17 relative z-20
         border-b border-gray-200/60 
         backdrop-blur-xl bg-white/70
       "
     >
       {/* MAIN SUBNAV BAR */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-center gap-6 text-gray-700 font-medium overflow-x-auto">
-        <SubnavButton label="Services" open={openMenu === 'services'} onClick={() => toggle('services')} />
-        <SubnavButton label="Industries" open={openMenu === 'industries'} onClick={() => toggle('industries')} />
-        <SubnavButton label="Resources" open={openMenu === 'resources'} onClick={() => toggle('resources')} />
+        <SubnavButton label="Services" open={openMenu === "services"} onClick={() => toggle("services")} />
+        <SubnavButton label="Industries" open={openMenu === "industries"} onClick={() => toggle("industries")} />
+        <SubnavButton label="Resources" open={openMenu === "resources"} onClick={() => toggle("resources")} />
 
         <Link
           href="/pricing"
@@ -99,7 +76,7 @@ export default function Subnav() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
@@ -183,21 +160,21 @@ function Item({ title, desc, href, Icon, mobile = false }: any) {
 }
 
 /* ===========================
-   SERVICES MEGA MENU
+   SERVICES MENU
 =========================== */
 function ServicesMegaMenu({ mobile = false }) {
   return (
     <>
       <Item mobile={mobile} title="AI Chatbots" desc="Intelligent agents for support, sales & workflows." href="/services/chatbots" Icon={MessageSquare} />
       <Item mobile={mobile} title="AI Automation" desc="Automate repetitive tasks & operations with AI." href="/services/automation" Icon={Workflow} />
-      <Item mobile={mobile} title="Custom AI Software" desc="AI-powered tools tailored for your business." href="/services/custom-ai" Icon={BrainCircuit} />
+      <Item mobile={mobile} title="Custom AI Software" desc="AI-powered tools tailored for business." href="/services/custom-ai" Icon={BrainCircuit} />
       <Item mobile={mobile} title="AI Integrations" desc="Embed OpenAI/Claude models into your apps." href="/services/integration" Icon={PlugZap} />
     </>
   );
 }
 
 /* ===========================
-   INDUSTRIES MEGA MENU
+   INDUSTRIES MENU
 =========================== */
 function IndustriesMegaMenu({ mobile = false }) {
   return (
@@ -211,7 +188,7 @@ function IndustriesMegaMenu({ mobile = false }) {
 }
 
 /* ===========================
-   RESOURCES MEGA MENU
+   RESOURCES MENU
 =========================== */
 function ResourcesMegaMenu({ mobile = false }) {
   return (
