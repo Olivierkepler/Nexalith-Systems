@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <SessionProviderWrapper>
           {/* Main content offset below both navbars */}
-          <main className="pt-[70px]">
+          <main >
             {children}
           </main>
         </SessionProviderWrapper>

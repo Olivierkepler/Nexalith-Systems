@@ -51,15 +51,22 @@ export default function Subnav() {
       initial={{ y: 0 }}
       animate={{ y: visible ? 0 : -80 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="w-full sticky top-[72px] z-40 border-b border-gray-200/60 backdrop-blur-xl bg-white/70"
+      className="
+        w-full sticky top-[72px] z-40 
+        border-b border-gray-200/60 
+        backdrop-blur-xl bg-white/70
+      "
     >
       {/* MAIN SUBNAV BAR */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-center gap-6 text-gray-700 font-medium overflow-x-auto">
-        <SubnavButton label="Services" open={openMenu === "services"} onClick={() => toggle("services")} />
-        <SubnavButton label="Industries" open={openMenu === "industries"} onClick={() => toggle("industries")} />
-        <SubnavButton label="Resources" open={openMenu === "resources"} onClick={() => toggle("resources")} />
+        <SubnavButton label="Services" open={openMenu === 'services'} onClick={() => toggle('services')} />
+        <SubnavButton label="Industries" open={openMenu === 'industries'} onClick={() => toggle('industries')} />
+        <SubnavButton label="Resources" open={openMenu === 'resources'} onClick={() => toggle('resources')} />
 
-        <Link href="/pricing" className="hover:text-black transition font-semibold whitespace-nowrap text-sm sm:text-base">
+        <Link
+          href="/pricing"
+          className="hover:text-black transition font-semibold whitespace-nowrap text-sm sm:text-base"
+        >
           Pricing
         </Link>
       </div>
@@ -96,27 +103,49 @@ export default function Subnav() {
   );
 }
 
-/* SUBNAV BUTTON */
-function SubnavButton({ label, open, onClick }: { label: string; open: boolean; onClick: () => void }) {
+/* ===========================
+   SUBNAV BUTTON
+=========================== */
+function SubnavButton({
+  label,
+  open,
+  onClick,
+}: {
+  label: string;
+  open: boolean;
+  onClick: () => void;
+}) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-1 hover:text-black transition relative font-semibold whitespace-nowrap text-sm sm:text-base"
+      className="flex items-center gap-1 hover:text-black transition font-semibold whitespace-nowrap text-sm sm:text-base"
     >
       {label}
-      <ChevronDown className={`h-4 w-4 transition duration-300 ${open ? "rotate-180 text-black" : "text-gray-500"}`} />
+      <ChevronDown
+        className={`h-4 w-4 transition duration-300 ${
+          open ? "rotate-180 text-black" : "text-gray-500"
+        }`}
+      />
     </button>
   );
 }
 
-/* DROPDOWN WRAPPER */
+/* ===========================
+   DROPDOWN WRAPPER
+=========================== */
 function DropdownWrapper({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
-      className="hidden md:block absolute left-0 w-full bg-white/80 backdrop-blur-2xl border-b border-gray-200/50 shadow-[0_8px_40px_rgba(0,0,0,0.08)] z-30"
+      className="
+        hidden md:block absolute left-0 w-full 
+        bg-white/80 backdrop-blur-2xl
+        border-b border-gray-200/50
+        shadow-[0_8px_40px_rgba(0,0,0,0.08)]
+        z-30
+      "
     >
       <div className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-t from-gray-100/40 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 relative z-20">
@@ -126,24 +155,36 @@ function DropdownWrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ITEM COMPONENT */
+/* ===========================
+   ITEM COMPONENT
+=========================== */
 function Item({ title, desc, href, Icon, mobile = false }: any) {
   return (
     <Link
       href={href}
-      className={`group block transition-all rounded-xl border border-gray-200 
-        ${mobile ? "p-4 bg-white shadow-sm" : "p-6 bg-white/50 backdrop-blur-xl shadow-sm hover:bg-white/80 hover:shadow-md"}`}
+      className={`
+        group block transition-all rounded-xl border border-gray-200 
+        ${
+          mobile
+            ? "p-4 bg-white shadow-sm"
+            : "p-6 bg-white/50 backdrop-blur-xl shadow-sm hover:bg-white/80 hover:shadow-md"
+        }
+      `}
     >
       <div className="flex items-center gap-3">
         <Icon className="h-6 w-6 text-indigo-600 group-hover:text-indigo-700 transition" />
-        <h3 className="font-semibold text-gray-900 text-lg group-hover:text-indigo-600 transition">{title}</h3>
+        <h3 className="font-semibold text-gray-900 text-lg group-hover:text-indigo-600 transition">
+          {title}
+        </h3>
       </div>
       <p className="text-gray-600 text-sm mt-1">{desc}</p>
     </Link>
   );
 }
 
-/* SERVICES MENU */
+/* ===========================
+   SERVICES MEGA MENU
+=========================== */
 function ServicesMegaMenu({ mobile = false }) {
   return (
     <>
@@ -155,7 +196,9 @@ function ServicesMegaMenu({ mobile = false }) {
   );
 }
 
-/* INDUSTRIES MENU */
+/* ===========================
+   INDUSTRIES MEGA MENU
+=========================== */
 function IndustriesMegaMenu({ mobile = false }) {
   return (
     <>
@@ -167,7 +210,9 @@ function IndustriesMegaMenu({ mobile = false }) {
   );
 }
 
-/* RESOURCES MENU */
+/* ===========================
+   RESOURCES MEGA MENU
+=========================== */
 function ResourcesMegaMenu({ mobile = false }) {
   return (
     <>
