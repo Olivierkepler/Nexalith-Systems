@@ -4,7 +4,7 @@ import { Github, Linkedin, Twitter } from "lucide-react";
 
 const Footer: FC = () => {
   return (
-    <footer className="w-full border-t border-transparent bg-white/80 backdrop-blur-lg">
+    <footer className="w-full border-t border-transparent bg-white/80 backdrop-blur-lg dark:bg-black/80">
       {/* Gradient Border */}
       <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-black/20 to-transparent" />
 
