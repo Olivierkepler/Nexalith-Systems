@@ -36,7 +36,7 @@ export default function ContactPage() {
     "Have a question, idea, or collaboration in mind? Use the form below to reach out.";
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans ">
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-950 font-sans ">
           <div className="w-full  ">
         <div className="mb-8 text-center px-4">
           <h1 className="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-50">

@@ -190,7 +190,7 @@ export default function ContactForm() {
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative mb-10 overflow-hidden rounded-3xl border bg-white/75 shadow-xl backdrop-blur-xl"
+        className="relative mb-10 overflow-hidden rounded-3xl border bg-white/75 dark:bg-zinc-900/75 shadow-xl backdrop-blur-xl"
         style={{ borderColor: 'rgba(30,58,138,0.12)' }}
       >
         <div className="grid grid-cols-1 md:grid-cols-2">
@@ -293,7 +293,7 @@ export default function ContactForm() {
                   />
 
                   <div className="mt-2 flex items-center justify-between">
-                    <div className="h-1 w-full rounded bg-gray-100">
+                    <div className="h-1 w-full rounded bg-gray-100 dark:bg-zinc-800">
                       <div
                         className={`h-1 rounded ${
                           msgPct > 90
@@ -350,10 +350,10 @@ export default function ContactForm() {
 /* ===== Left Pane (Brand/Trust) ===== */
 function LeftPane({ state }: { state: FormState }) {
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-l-3xl bg-gradient-to-br from-blue-50 via-white to-amber-50 p-8">
+    <div className="relative h-full w-full overflow-hidden rounded-l-3xl bg-gradient-to-br dark:bg-gradient-to-br from-blue-50 via-white to-amber-50 p-8">
       {/* Static soft background, no heavy looping animation */}
-      <div className="pointer-events-none absolute -top-24 -left-24 h-[32rem] w-[32rem] rounded-full bg-blue-200/40 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -right-24 h-[28rem] w-[28rem] rounded-full bg-amber-200/40 blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 -left-24 h-[32rem] w-[32rem] rounded-full bg-blue-200/40 dark:bg-blue-200/40 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -right-24 h-[28rem] w-[28rem] rounded-full bg-amber-200/40 dark:bg-amber-200/40 blur-3xl" />
 
       <div className="relative z-10 flex h-full flex-col">
         <StepHeader state={state} />
@@ -376,15 +376,15 @@ function LeftPane({ state }: { state: FormState }) {
         {/* <Image className="w-full h-full justify-center items-center" src="/logo1.png" alt="Nexalith Logo" width={80} height={80} /> */}
         <div className="mt-auto pt-8 text-xs text-gray-500">
           Tip: Press{' '}
-          <kbd className="rounded bg-gray-800 px-1.5 py-0.5 font-mono text-white">
+          <kbd className="rounded bg-gray-800 dark:bg-zinc-800 px-1.5 py-0.5 font-mono text-white">
             ⌘
           </kbd>
           /
-          <kbd className="rounded bg-gray-800 px-1.5 py-0.5 font-mono text-white">
+          <kbd className="rounded bg-gray-800 dark:bg-zinc-800 px-1.5 py-0.5 font-mono text-white">
             Ctrl
           </kbd>{' '}
           +{' '}
-          <kbd className="rounded bg-gray-800 px-1.5 py-0.5 font-mono text-white">
+          <kbd className="rounded bg-gray-800 dark:bg-zinc-800  px-1.5 py-0.5 font-mono text-white">
             Enter
           </kbd>{' '}
           to send
@@ -415,20 +415,20 @@ function StepHeader({ state }: { state: FormState }) {
             <div key={s.label} className="flex items-center gap-2">
               <div
                 className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold ${
-                  on ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'
+                  on ? 'bg-blue-600 text-white dark:bg-blue-600 dark:text-white' : 'bg-gray-200 text-gray-600 dark:bg-zinc-800 dark:text-zinc-400'
                 }`}
               >
                 {stepNum}
               </div>
               <span
                 className={`text-xs ${
-                  on ? 'text-gray-900' : 'text-gray-500'
+                  on ? 'text-gray-900 dark:text-zinc-100' : 'text-gray-500 dark:text-zinc-400'
                 }`}
               >
                 {s.label}
               </span>
               {i < steps.length - 1 && (
-                <div className="mx-1 h-px w-6 bg-gray-300" />
+                <div className="mx-1 h-px w-6 bg-gray-300 dark:bg-zinc-700" />
               )}
             </div>
           );
@@ -441,7 +441,7 @@ function StepHeader({ state }: { state: FormState }) {
 /* ===== Small UI Parts ===== */
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-black/10 bg-black/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-gray-700">
+    <span className="inline-flex items-center rounded-full border border-black/10 bg-black/5 dark:bg-black/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-gray-700 dark:text-zinc-400">
       {children}
     </span>
   );
@@ -449,7 +449,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex min-w-[88px] justify-center rounded-md bg-blue-600/10 px-2 py-0.5 text-[10px] font-semibold uppercase text-blue-700">
+    <span className="inline-flex min-w-[88px] justify-center rounded-md bg-blue-600/10 px-2 py-0.5 text-[10px] font-semibold uppercase text-blue-700 dark:bg-blue-600/10 dark:text-blue-700">
       {children}
     </span>
   );
@@ -486,7 +486,7 @@ function SubmitButton({
       <motion.span
         initial={{ width: '0%' }}
         animate={progress}
-        className="absolute left-0 top-0 h-full bg-white/15"
+        className="absolute left-0 top-0 h-full bg-white/15 dark:bg-zinc-800/15"
         aria-hidden
       />
 
@@ -584,27 +584,27 @@ function Field(props: {
           ${
             error
               ? 'border-red-300 ring-red-200'
-              : 'border-gray-200 focus:ring-amber-200'
+              : 'border-gray-200 focus:ring-amber-200 dark:border-zinc-700 dark:focus:ring-amber-200'
           }`}
         placeholder={label}
       />
 
       <label
         htmlFor={id}
-        className={`pointer-events-none absolute left-9 top-2.5 z-10 bg-white px-1 text-xs text-gray-500 transition-all
+        className={`pointer-events-none absolute left-9 top-2.5 z-10 bg-white px-1 text-xs text-gray-500 dark:bg-zinc-900 dark:text-zinc-400 transition-all
           peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2.5 peer-focus:text-xs`}
       >
         {label}
       </label>
 
       {valid && !error && (
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-600">
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-600 dark:text-emerald-600">
           <MiniTick />
         </div>
       )}
 
       {error && (
-        <p id={describedBy} className="mt-1 text-xs text-red-600">
+        <p id={describedBy} className="mt-1 text-xs text-red-600 dark:text-red-600">
           {error}
         </p>
       )}
@@ -647,23 +647,23 @@ function Textarea(props: {
           ${
             error
               ? 'border-red-300 ring-red-200'
-              : 'border-gray-200 focus:ring-amber-200'
+              : 'border-gray-200 focus:ring-amber-200 dark:border-zinc-700 dark:focus:ring-amber-200'
           }`}
       />
       <label
         htmlFor={id}
-        className={`pointer-events-none absolute left-9 top-2.5 z-10 bg-white px-1 text-xs text-gray-500 transition-all
+        className={`pointer-events-none absolute left-9 top-2.5 z-10 bg-white px-1 text-xs text-gray-500 dark:bg-zinc-900 dark:text-zinc-400 transition-all
           peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-focus:top-2.5 peer-focus:text-xs`}
       >
         {label}
       </label>
       {error && (
-        <p id={describedBy} className="mt-1 text-xs text-red-600">
+        <p id={describedBy} className="mt-1 text-xs text-red-600 dark:text-red-600  ">
           {error}
         </p>
       )}
       {placeholder && (
-        <p className="mt-1 text-xs text-gray-500">{placeholder}</p>
+        <p className="mt-1 text-xs text-gray-500 dark:text-zinc-400">{placeholder}</p>
       )}
     </div>
   );
@@ -676,7 +676,7 @@ function IconUser() {
       width="18"
       height="18"
       viewBox="0 0 24 24"
-      className="text-gray-700"
+      className="text-gray-700 dark:text-zinc-400"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -693,7 +693,7 @@ function IconMail() {
       width="18"
       height="18"
       viewBox="0 0 24 24"
-      className="text-gray-700"
+      className="text-gray-700 dark:text-zinc-400"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -710,7 +710,7 @@ function IconPhone() {
       width="18"
       height="18"
       viewBox="0 0 24 24"
-      className="text-gray-700"
+      className="text-gray-700 dark:text-zinc-400"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -726,7 +726,7 @@ function IconNote() {
       width="18"
       height="18"
       viewBox="0 0 24 24"
-      className="text-gray-700"
+      className="text-gray-700 dark:text-zinc-400"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -744,7 +744,7 @@ function MiniTick() {
       width="16"
       height="16"
       viewBox="0 0 24 24"
-      className="text-emerald-600"
+      className="text-emerald-600 dark:text-emerald-600"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
