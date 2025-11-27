@@ -218,10 +218,10 @@ export default function ContactForm() {
 
             <header className="mb-6">
               <Pill>Inquiry Form</Pill>
-              <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-gray-900">
+              <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">
                 Tell us about the project you want to build
               </h3>
-              <p className="mt-1 text-sm text-gray-600">
+              <p className="mt-1 text-sm text-gray-600 dark:text-white">
                 We respond within 1 business day.
               </p>
             </header>
@@ -318,7 +318,7 @@ export default function ContactForm() {
               </div>
 
               <div className="mt-7 flex items-center justify-between gap-3">
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-gray-500 dark:text-white">
                   Secure form • No promotional messages
                 </span>
 
