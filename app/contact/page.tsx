@@ -38,7 +38,7 @@ export default function ContactPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-950 font-sans ">
           <div className="w-full  ">
-        <div className="mb-8 text-center px-4">
+        <div className="mb-4 mt-4 text-center px-4">
           <h1 className="text-4xl font-bold mb-4 text-zinc-900 dark:text-zinc-50">
             {title}
           </h1>
