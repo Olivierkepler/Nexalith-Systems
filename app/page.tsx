@@ -3,11 +3,16 @@
 import { useEffect, useState } from "react";
 import Chatbot from "./components/Chatbot";
 import { motion } from "framer-motion";
-import Searcher from "./components/Searcher";
+import CommandPalette, { SearchItem } from "./components/CommandPalette";
+import { SearchIcon } from "lucide-react";
 
 export default function HomePage() {
   const [content, setContent] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  // 🔍 Command Palette State
+  const [index, setIndex] = useState<SearchItem[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   // Load CMS from Gist via API route
   useEffect(() => {
@@ -23,6 +28,30 @@ export default function HomePage() {
       }
     }
     load();
+  }, []);
+
+  // 🔍 Load search index for Command Palette
+  useEffect(() => {
+    fetch("/search-index.json")
+      .then((r) => r.json())
+      .then((data: SearchItem[]) => setIndex(data))
+      .catch(console.error);
+  }, []);
+
+  // ⌘K / Ctrl+K global shortcut
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const isMac = navigator.platform.toLowerCase().includes("mac");
+      const mod = isMac ? e.metaKey : e.ctrlKey;
+
+      if (mod && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
   }, []);
 
   if (loading)
@@ -44,24 +73,23 @@ export default function HomePage() {
       <div className="w-full max-w-7xl flex flex-col gap-10">
 
         {/* Top Navigation */}
-        <header className="flex items-center justify-between px-2 sm:px-1">
-          <div className="flex items-center gap-2">
-            <span className="h-8 w-8 rounded-xl bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center text-xs font-bold text-white dark:text-zinc-900">
-              W
-            </span>
-            <div className="flex flex-col">
-              <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                WebAIGen
-              </span>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400">
-                Explore · Create · Search
-              </span>
-            </div>
-          </div>
+        <header className="flex items-center justify-center px-2 sm:px-1 lg:hidden">
 
-          <nav className="flex items-center gap-2 text-xs sm:text-sm">
-            <Searcher />
-          </nav>
+          {/* Left placeholder (optional) */}
+          <div />
+
+          {/* 🔍 Command Palette Trigger Button */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="inline-flex justify-between   py-2 align-middle w-1/3 items-center gap-2 rounded-full border border-zinc-300/70 dark:border-zinc-700/70 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition text-sm font-medium px-3 py-1 text-sm
+                       text-gray-600 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
+          >
+          <div className="flex items-center gap-2">
+          <SearchIcon className="h-5 w-5 text-gray-700" />
+          <span>Search</span>
+          </div>
+            <kbd className="px-1 py-0.5 rounded border border-zinc-300/70 dark:border-zinc-700/70 text-zinc-500 dark:text-zinc-400 text-[10px]">⌘K/Ctrl+K</kbd>
+          </button>
         </header>
 
         {/* Hero Section */}
@@ -155,6 +183,13 @@ export default function HomePage() {
         <div className="fixed bottom-0 right-6 z-50">
           <Chatbot />
         </div>
+
+        {/* 🔍 Command Palette Modal (global) */}
+        <CommandPalette
+          index={index}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        />
       </div>
     </div>
   );
