@@ -1,58 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Chatbot from "./components/Chatbot";
 import { motion } from "framer-motion";
+import content from "@/content/home.json";
 import Searcher from "./components/Searcher";
 
+
+
 export default function HomePage() {
-  const [content, setContent] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  // Load content dynamically from Gist API instead of local file
-  useEffect(() => {
-    const loadContent = async () => {
-      try {
-        const res = await fetch("/api/content/home");
-        const data = await res.json();
-        setContent(data);
-      } catch (err) {
-        console.error("Failed to load home content:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadContent();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-black dark:to-zinc-950">
-        <p className="text-zinc-500 dark:text-zinc-400 text-sm">Loading content…</p>
-      </div>
-    );
-  }
-
-  if (!content) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-red-500 font-semibold">Failed to load content.</p>
-      </div>
-    );
-  }
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-black dark:to-zinc-950 font-sans p-4">
-      <div className="w-full max-w-7xl flex flex-col gap-10">
+    <div className="flex min-h-screen  items-center justify-center bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-black dark:to-zinc-950 font-sans p-4">
+      <div className="w-full  max-w-7xl flex flex-col gap-10">
 
         {/* Top Navigation */}
         <header className="flex items-center justify-between px-2 sm:px-1">
           <div className="flex items-center gap-2">
             <span className="h-8 w-8 rounded-xl bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center text-xs font-bold text-white dark:text-zinc-900">
               W
-            </span>
-
+               </span>
             <div className="flex flex-col">
               <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 WebAIGen
@@ -64,7 +29,8 @@ export default function HomePage() {
           </div>
 
           <nav className="flex items-center gap-2 text-xs sm:text-sm">
-            <Searcher />
+           {/* 🔎 Desktop Searcher Component */}
+          <Searcher />
           </nav>
         </header>
 
@@ -84,7 +50,6 @@ export default function HomePage() {
             <p className="mt-1 text-zinc-700 dark:text-zinc-300">
               {content.hero.subtitle}
             </p>
-
             <p className="mt-3 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
               Press <span className="border rounded px-1 py-0.5 text-[11px]">⌘K</span> or{" "}
               <span className="border rounded px-1 py-0.5 text-[11px]">Ctrl+K</span> anytime to open
@@ -93,9 +58,9 @@ export default function HomePage() {
           </div>
         </motion.section>
 
-        {/* Features */}
+        {/* Feature Grid Section */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {content.features.map((feature: any, i: number) => (
+          {content.features.map((feature, i) => (
             <motion.div
               id={`feature-${i}`}
               key={i}
@@ -117,7 +82,7 @@ export default function HomePage() {
           ))}
         </section>
 
-        {/* Centerpiece */}
+        {/* Wide Centerpiece Section */}
         <motion.section
           id="centerpiece-section"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -136,9 +101,9 @@ export default function HomePage() {
           </div>
         </motion.section>
 
-        {/* Grid Blocks */}
+        {/* Additional Grid Section */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {content.grid.map((item: any, i: number) => (
+          {content.grid.map((item, i) => (
             <motion.div
               id={`grid-${i}`}
               key={i}
@@ -160,11 +125,12 @@ export default function HomePage() {
           ))}
         </section>
 
-        {/* Chatbot */}
+        {/* Chatbot Floating */}
         <div className="fixed bottom-0 right-6 z-50">
           <Chatbot />
         </div>
 
+      
       </div>
     </div>
   );
