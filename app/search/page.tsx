@@ -106,14 +106,14 @@ export default function SearchPage() {
   
 
   return (
-    <div className="min-h-screen  bg-gray-50 px-4 py-10">
+    <div className="min-h-screen  bg-gray-50 dark:bg-zinc-950 px-4 py-10">
       <div className="max-w-2xl mt-32 mx-auto">
         {/* Header + inline search bar as backup */}
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-semibold tracking-tight">Search</h1>
           <button
             onClick={() => setIsOpen(true)}
-            className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm text-gray-600 hover:bg-gray-100"
+            className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
           >
             <CommandIcon className="w-4 h-4" />
             <span className="hidden sm:inline">
@@ -124,9 +124,9 @@ export default function SearchPage() {
         </div>
 
         <div className="relative mb-6">
-          <SearchIcon className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+          <SearchIcon className="absolute left-3 top-3 w-5 h-5 text-gray-400 dark:text-zinc-400" />
           <input
-            className="w-full pl-10 pr-4 py-3 rounded-2xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-black"
+            className="w-full pl-10 pr-4 py-3 rounded-2xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-black dark:border-zinc-700 dark:focus:ring-zinc-700"
             placeholder="Search across pages…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -140,12 +140,12 @@ export default function SearchPage() {
                 <button
                   key={item.slug}
                   onClick={() => handleSelect(item)}
-                  className="w-full text-left p-4 rounded-2xl bg-white shadow-sm hover:shadow-md transition flex flex-col gap-1"
+                  className="w-full text-left p-4 rounded-2xl bg-white shadow-sm hover:shadow-md transition flex flex-col gap-1 dark:bg-zinc-900 dark:shadow-zinc-800 dark:hover:shadow-zinc-700"
                 >
                   <div className="text-sm font-semibold">
                     {highlight(item.title, query)}
                   </div>
-                  <div className="text-xs text-gray-600 line-clamp-2">
+                  <div className="text-xs text-gray-600 line-clamp-2 dark:text-zinc-400">
                     {highlight(item.content, query)}
                   </div>
                 </button>
@@ -154,11 +154,11 @@ export default function SearchPage() {
           )}
 
           {query.trim() && results.length === 0 && (
-            <p className="text-gray-500 text-sm">No results found.</p>
+            <p className="text-gray-500 text-sm dark:text-zinc-400">No results found.</p>
           )}
 
           {!query.trim() && (
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-sm dark:text-zinc-400">
               Type above or press <kbd className="px-1 py-0.5 rounded border text-xs">⌘K</kbd> /{" "}
               <kbd className="px-1 py-0.5 rounded border text-xs">Ctrl+K</kbd> to open the palette.
             </p>
@@ -170,14 +170,14 @@ export default function SearchPage() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 px-4 pt-24"
+            className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 px-4 pt-24 dark:bg-zinc-900/40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={close}
           >
             <motion.div
-              className="w-full max-w-xl rounded-2xl bg-white shadow-xl border border-gray-200 overflow-hidden"
+              className="w-full max-w-xl rounded-2xl bg-white shadow-xl border border-gray-200 overflow-hidden dark:bg-zinc-900 dark:shadow-zinc-800 dark:border-zinc-700"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
@@ -185,17 +185,17 @@ export default function SearchPage() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center border-b px-4 py-2 gap-2">
-                <SearchIcon className="w-4 h-4 text-gray-400" />
+                <SearchIcon className="w-4 h-4 text-gray-400 dark:text-zinc-400" />
                 <input
                   autoFocus
-                  className="flex-1 bg-transparent outline-none text-sm py-2"
+                  className="flex-1 bg-transparent outline-none text-sm py-2 dark:text-zinc-400 dark:bg-zinc-900"
                   placeholder="Search…"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                 />
                 <button
                   onClick={close}
-                  className="text-gray-400 hover:text-gray-600 p-1 rounded-full"
+                  className="text-gray-400 hover:text-gray-600 p-1 rounded-full dark:text-zinc-400 dark:hover:text-zinc-400"
                   aria-label="Close"
                 >
                   <X className="w-4 h-4" />
@@ -204,13 +204,13 @@ export default function SearchPage() {
 
               <div className="max-h-80 overflow-y-auto">
                 {query.trim() && results.length === 0 && (
-                  <div className="px-4 py-6 text-center text-sm text-gray-500">
+                  <div className="px-4 py-6 text-center text-sm text-gray-500 dark:text-zinc-400">
                     No results found.
                   </div>
                 )}
 
                 {!query.trim() && (
-                  <div className="px-4 py-6 text-center text-xs text-gray-400">
+                  <div className="px-4 py-6 text-center text-xs text-gray-400 dark:text-zinc-400">
                     Start typing to search. Use ↑ ↓ to move, Enter to open.
                   </div>
                 )}
@@ -219,12 +219,12 @@ export default function SearchPage() {
                   <button
                     key={item.slug}
                     onClick={() => handleSelect(item)}
-                    className="w-full text-left px-4 py-3 hover:bg-gray-50 flex flex-col gap-1"
+                    className="w-full text-left px-4 py-3 hover:bg-gray-50 flex flex-col gap-1 dark:hover:bg-zinc-800"
                   >
                     <span className="text-sm font-medium">
                       {highlight(item.title, query)}
                     </span>
-                    <span className="text-xs text-gray-600 line-clamp-2">
+                    <span className="text-xs text-gray-600 line-clamp-2 dark:text-zinc-400">
                       {highlight(item.content, query)}
                     </span>
                   </button>
