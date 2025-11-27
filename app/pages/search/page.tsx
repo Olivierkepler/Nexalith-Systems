@@ -29,16 +29,16 @@ export default function SearchPage() {
   }, [query, index]);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-10 mt-16">
+    <div className="min-h-screen bg-gray-50 dark:bg-zinc-950 p-10 mt-16">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="relative mb-10"
         >
-          <SearchIcon className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+          <SearchIcon className="absolute left-3 top-3 w-5 h-5 text-gray-400 dark:text-zinc-400" />
           <input
-            className="w-full pl-10 pr-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
+            className="w-full pl-10 pr-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black dark:border-zinc-700 dark:focus:ring-zinc-700"
             placeholder="Search..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -52,15 +52,15 @@ export default function SearchPage() {
               href={`/${item.page}`}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="block p-5 rounded-2xl bg-white shadow hover:shadow-md transition"
+              className="block p-5 rounded-2xl bg-white shadow hover:shadow-md transition dark:bg-zinc-900 dark:shadow-zinc-800 dark:hover:shadow-zinc-700"
             >
               <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
-              <p className="text-gray-600 text-sm line-clamp-2">{item.text}</p>
+              <p className="text-gray-600 text-sm line-clamp-2 dark:text-zinc-400">{item.text}</p>
             </motion.a>
           ))}
 
           {query.trim() && results.length === 0 && (
-            <p className="text-gray-500 text-center">No results found.</p>
+            <p className="text-gray-500 text-center dark:text-zinc-400">No results found.</p>
           )}
         </div>
       </div>
