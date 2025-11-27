@@ -1,23 +1,54 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Chatbot from "./components/Chatbot";
 import { motion } from "framer-motion";
-import content from "@/content/home.json";
 import Searcher from "./components/Searcher";
 
-
-
 export default function HomePage() {
+  const [content, setContent] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Load CMS from Gist via API route
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch("/api/content/home", { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch home content");
+        setContent(await res.json());
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  if (loading)
+    return (
+      <div className="min-h-screen flex items-center justify-center text-zinc-600 dark:text-zinc-300">
+        Loading content…
+      </div>
+    );
+
+  if (!content)
+    return (
+      <div className="min-h-screen flex items-center justify-center text-red-500">
+        Could not load content from CMS (home.json)
+      </div>
+    );
+
   return (
-    <div className="flex min-h-screen  items-center justify-center bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-black dark:to-zinc-950 font-sans p-4">
-      <div className="w-full  max-w-7xl flex flex-col gap-10">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-black dark:to-zinc-950 font-sans p-4">
+      <div className="w-full max-w-7xl flex flex-col gap-10">
 
         {/* Top Navigation */}
         <header className="flex items-center justify-between px-2 sm:px-1">
           <div className="flex items-center gap-2">
             <span className="h-8 w-8 rounded-xl bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center text-xs font-bold text-white dark:text-zinc-900">
               W
-               </span>
+            </span>
             <div className="flex flex-col">
               <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 WebAIGen
@@ -29,8 +60,7 @@ export default function HomePage() {
           </div>
 
           <nav className="flex items-center gap-2 text-xs sm:text-sm">
-           {/* 🔎 Desktop Searcher Component */}
-          <Searcher />
+            <Searcher />
           </nav>
         </header>
 
@@ -52,23 +82,21 @@ export default function HomePage() {
             </p>
             <p className="mt-3 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
               Press <span className="border rounded px-1 py-0.5 text-[11px]">⌘K</span> or{" "}
-              <span className="border rounded px-1 py-0.5 text-[11px]">Ctrl+K</span> anytime to open
-              the command palette and search across pages.
+              <span className="border rounded px-1 py-0.5 text-[11px]">Ctrl+K</span> anytime to search.
             </p>
           </div>
         </motion.section>
 
         {/* Feature Grid Section */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {content.features.map((feature, i) => (
+          {content.features.map((feature: any, i: number) => (
             <motion.div
-              id={`feature-${i}`}
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="relative h-40 sm:h-44 md:h-48 rounded-3xl bg-white/70 dark:bg-zinc-900/70 shadow-lg backdrop-blur-xl border border-zinc-300/40 dark:border-zinc-700/40 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
+              className="relative h-40 sm:h-44 md:h-48 rounded-3xl bg-white/70 dark:bg-zinc-900/70 shadow-lg backdrop-blur-xl border border-zinc-300/40 dark:border-zinc-700/40 hover:scale-[1.03] transition-all duration-300"
             >
               <div className="absolute inset-0 p-4">
                 <h3 className="font-semibold text-lg text-zinc-900 dark:text-white">
@@ -82,9 +110,8 @@ export default function HomePage() {
           ))}
         </section>
 
-        {/* Wide Centerpiece Section */}
+        {/* Centerpiece */}
         <motion.section
-          id="centerpiece-section"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -101,17 +128,16 @@ export default function HomePage() {
           </div>
         </motion.section>
 
-        {/* Additional Grid Section */}
+        {/* Grid */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {content.grid.map((item, i) => (
+          {content.grid.map((item: any, i: number) => (
             <motion.div
-              id={`grid-${i}`}
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="relative h-56 sm:h-60 md:h-64 rounded-3xl bg-white/70 dark:bg-zinc-900/70 shadow-lg backdrop-blur-xl border border-zinc-300/40 dark:border-zinc-700/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+              className="relative h-56 sm:h-60 md:h-64 rounded-3xl bg-white/70 dark:bg-zinc-900/70 shadow-lg backdrop-blur-xl border border-zinc-300/40 dark:border-zinc-700/40 hover:scale-[1.02] transition-all duration-300"
             >
               <div className="absolute inset-0 p-4 flex flex-col">
                 <h3 className="font-semibold text-xl text-zinc-900 dark:text-white">
@@ -125,12 +151,10 @@ export default function HomePage() {
           ))}
         </section>
 
-        {/* Chatbot Floating */}
+        {/* Chatbot */}
         <div className="fixed bottom-0 right-6 z-50">
           <Chatbot />
         </div>
-
-      
       </div>
     </div>
   );
