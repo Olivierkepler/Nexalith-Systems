@@ -72,25 +72,89 @@ export default function HomePage() {
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-zinc-100 to-zinc-200 dark:from-black dark:to-zinc-950 font-sans p-4">
       <div className="w-full max-w-7xl flex flex-col gap-10">
 
-        {/* Top Navigation */}
-        <header className="flex items-center justify-center px-2 sm:px-1 lg:hidden">
+ {/* Top Navigation */}
+<header className="lg:hidden px-4 py-3 flex justify-center">
 
-          {/* Left placeholder (optional) */}
-          <div />
+<motion.button
+  onClick={() => setIsOpen(true)}
+  initial={{ opacity: 0, y: -10 }}
+  animate={{ opacity: 1, y: 0 }}
+  whileTap={{ scale: 0.97 }}
+  className="
+    relative
+    w-full max-w-sm
+    flex items-center justify-between
+    px-4 py-2.5
+    rounded-2xl
+    bg-white/60 dark:bg-zinc-900/60
+    backdrop-blur-xl
+    border border-zinc-300/70 dark:border-zinc-700/70
+    shadow-[0_2px_10px_rgba(0,0,0,0.10)]
+    dark:shadow-[0_2px_10px_rgba(0,0,0,0.55)]
+    overflow-hidden
+  "
+>
 
-          {/* 🔍 Command Palette Trigger Button */}
-          <button
-            onClick={() => setIsOpen(true)}
-            className="inline-flex justify-between   py-2 align-middle w-1/3 items-center gap-2 rounded-full border border-zinc-300/70 dark:border-zinc-700/70 bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition text-sm font-medium px-3 py-1 text-sm
-                       text-gray-600 hover:bg-gray-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
-          >
-          <div className="flex items-center gap-2">
-          <SearchIcon className="h-5 w-5 text-gray-700" />
-          <span>Search</span>
-          </div>
-            <kbd className="px-1 py-0.5 rounded border border-zinc-300/70 dark:border-zinc-700/70 text-zinc-500 dark:text-zinc-400 text-[10px]">⌘K/Ctrl+K</kbd>
-          </button>
-        </header>
+  {/* Magical Animated Glow */}
+  <motion.div
+    className="absolute inset-0 rounded-2xl pointer-events-none"
+    initial={{ opacity: 0 }}
+    animate={{
+      opacity: [0.15, 0.45, 0.15],
+    }}
+    transition={{
+      duration: 4,
+      repeat: Infinity,
+      repeatType: "mirror",
+    }}
+    style={{
+      background:
+        "radial-gradient(120% 150% at 50% -20%, rgba(255,255,255,0.45), rgba(0,0,0,0) 70%)",
+    }}
+  />
+
+  {/* Shimmer beam */}
+  <motion.div
+    className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
+    animate={{
+      x: ["-150%", "150%"],
+    }}
+    transition={{
+      duration: 3.5,
+      repeat: Infinity,
+      repeatType: "loop",
+      ease: "easeInOut",
+    }}
+  />
+
+  {/* Left side: icon + text */}
+  <div className="flex items-center gap-2 z-10">
+    <SearchIcon className="h-5 w-5 text-zinc-700 dark:text-zinc-300" />
+    <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+      Search the universe…
+    </span>
+  </div>
+
+  {/* Shortcut badge */}
+  <kbd
+    className="
+      hidden xs:flex z-10
+      items-center gap-1
+      px-2 py-0.5
+      rounded-md
+      text-[10px]
+      font-medium
+      border border-zinc-300/80 dark:border-zinc-700/80
+      bg-white/30 dark:bg-zinc-800/40
+      text-zinc-500 dark:text-zinc-400
+    "
+  >
+    ⌘K
+  </kbd>
+
+</motion.button>
+</header>
+
 
         {/* Hero Section */}
         <motion.section
