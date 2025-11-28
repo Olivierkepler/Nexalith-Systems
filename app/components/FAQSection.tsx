@@ -35,7 +35,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-28 bg-white">
+    <section className="relative py-16 sm:py-20 md:py-28 bg-white dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-lg backdrop-blur-xl ">
       {/* Soft Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-40 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-indigo-200 opacity-20 blur-[180px]" />
@@ -47,7 +47,7 @@ export default function FAQSection() {
         <motion.h2
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center px-2"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-left px-2"
         >
           Frequently Asked Questions
         </motion.h2>
@@ -56,17 +56,17 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-500 text-center max-w-2xl mx-auto px-2"
+          className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-500 max-w-2xl px-2 text-left"
         >
           Everything you need to know about our AI solutions and services.
         </motion.p>
 
         {/* FAQ Accordion */}
-        <div className="mt-10 sm:mt-12 md:mt-16 space-y-3 sm:space-y-4">
+        <div className="mt-10 sm:mt-12 md:mt-16 space-y-3 sm:space-y-4 ">
           {faqs.map((item, index) => (
             <div
               key={index}
-              className="border border-gray-200 rounded-xl bg-white/70 backdrop-blur-xl shadow-sm"
+              className=" backdrop-blur-xl  border-b-2 border-zinc-200 dark:border-zinc-800"
             >
               {/* Question Button */}
               <button
@@ -94,7 +94,7 @@ export default function FAQSection() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-gray-600 text-xs sm:text-sm leading-relaxed">
+                    <div className="px-4  sm:px-6 pb-4 sm:pb-5 text-gray-600  leading-relaxed">
                       {item.a}
                     </div>
                   </motion.div>

@@ -5,7 +5,7 @@ import Chatbot from "./components/Chatbot";
 import { motion } from "framer-motion";
 import CommandPalette, { SearchItem } from "./components/CommandPalette";
 import { SearchIcon } from "lucide-react";
-
+import FAQSection from "./components/FAQSection";
 export default function HomePage() {
   const [content, setContent] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -241,6 +241,11 @@ export default function HomePage() {
               </div>
             </motion.div>
           ))}
+        </section>
+
+
+        <section>
+          <FAQSection />
         </section>
 
         {/* Chatbot */}
