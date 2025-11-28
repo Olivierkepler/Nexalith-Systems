@@ -35,19 +35,17 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-28 bg-white dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-lg backdrop-blur-xl ">
+    <section className="relative py-14 sm:py-20 md:py-28 bg-white dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-lg backdrop-blur-xl overflow-hidden">
       {/* Soft Background Glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-40 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-indigo-200 opacity-20 blur-[180px]" />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-48 left-1/2 -translate-x-1/2 w-[600px] sm:w-[900px] h-[600px] sm:h-[900px] bg-indigo-200 opacity-20 blur-[150px]" />
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
-        
-        {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-left px-2"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-left px-1"
         >
           Frequently Asked Questions
         </motion.h2>
@@ -56,36 +54,33 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-500 max-w-2xl px-2 text-left"
+          className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-500 max-w-2xl px-1 text-left"
         >
           Everything you need to know about our AI solutions and services.
         </motion.p>
 
         {/* FAQ Accordion */}
-        <div className="mt-10 sm:mt-12 md:mt-16 space-y-3 sm:space-y-4 ">
+        <div className="mt-8 sm:mt-12 md:mt-16 space-y-3 sm:space-y-4">
           {faqs.map((item, index) => (
             <div
               key={index}
-              className=" backdrop-blur-xl  border-b-2 border-zinc-200 dark:border-zinc-800"
+              className="border-b border-zinc-200 dark:border-zinc-800"
             >
-              {/* Question Button */}
               <button
                 onClick={() => toggle(index)}
-                className="w-full flex items-center cursor-pointer justify-between px-4 sm:px-6 py-4 sm:py-5 text-left gap-3 sm:gap-4"
+                className="w-full flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 text-left gap-3 sm:gap-4 tap-highlight-transparent"
               >
                 <span className="text-gray-900 font-medium text-base sm:text-lg pr-2">
                   {item.q}
                 </span>
 
                 <ChevronDown
-                  className={`
-                    h-4 w-4 sm:h-5 sm:w-5 text-gray-600 transition-transform flex-shrink-0
-                    ${openIndex === index ? "rotate-180" : ""}
-                  `}
+                  className={`h-5 w-5 text-gray-600 transition-transform flex-shrink-0 ${
+                    openIndex === index ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 
-              {/* Animated Answer */}
               <AnimatePresence initial={false}>
                 {openIndex === index && (
                   <motion.div
@@ -93,8 +88,9 @@ export default function FAQSection() {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25 }}
+                    className="overflow-hidden"
                   >
-                    <div className="px-4  sm:px-6 pb-4 sm:pb-5 text-gray-600  leading-relaxed">
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-gray-600 leading-relaxed text-sm sm:text-base">
                       {item.a}
                     </div>
                   </motion.div>
