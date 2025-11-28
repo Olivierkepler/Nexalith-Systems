@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import CommandPalette, { SearchItem } from "./components/CommandPalette";
 import { SearchIcon } from "lucide-react";
 import FAQSection from "./components/FAQSection";
+import PricingSection from "./components/PricingSection";
 export default function HomePage() {
   const [content, setContent] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -244,10 +245,16 @@ export default function HomePage() {
         </section>
 
 
+       
+        <section>
+          <PricingSection openConsultation={() => {
+            console.log("open consultation");
+          }} />
+        </section>  
+
         <section>
           <FAQSection />
         </section>
-
         {/* Chatbot */}
         <div className="fixed bottom-0 right-6 z-50">
           <Chatbot />
