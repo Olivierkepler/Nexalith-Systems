@@ -35,7 +35,7 @@ export default function Navbar() {
 
           <div className="flex flex-col leading-none">
             <span className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-100">
-              WebAIGen
+              
             </span>
             <span className="text-xs text-zinc-500 dark:text-zinc-400">
               Explore · Create · Search

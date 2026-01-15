@@ -1,5 +1,4 @@
 "use client";
-
 import {
   X,
   Mic,
@@ -21,7 +20,6 @@ import type { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
-
 import EstimatorPanel from "./EstimatorPanel";
 
 /* ----------------------------------------------------

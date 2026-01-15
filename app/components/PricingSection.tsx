@@ -168,10 +168,10 @@ export default function PricingSection({ openConsultation }: { openConsultation:
               className={`
                 rounded-2xl p-8 bg-white shadow-lg border
                 backdrop-blur-xl transition-all duration-300
-                hover:shadow-2xl hover:-translate-y-1
+                hover:shadow-2xl hover:-translate-y-1 dark:hover:shadow-zinc-800/50 dark:hover:-translate-y-1
                 ${
                   plan.highlight
-                    ? "border-indigo-500 shadow-indigo-200/60 scale-[1.04]"
+                    ? "border-gray-200 shadow-lg scale-[1.04] dark:shadow-zinc-800/50"
                     : "border-gray-200 dark:border-zinc-700/40"
                 }
               `}
@@ -212,7 +212,7 @@ export default function PricingSection({ openConsultation }: { openConsultation:
                     plan.name === "Enterprise" ? openConsultation() : null
                   }
                   className={`
-                    w-full py-3 rounded-xl font-semibold flex justify-center
+                    w-full py-3 rounded-xl font-semibold flex justify-center cursor-pointer
                     items-center gap-2 text-sm transition-all
                     ${
                       plan.highlight

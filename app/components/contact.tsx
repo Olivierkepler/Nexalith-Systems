@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { motion, AnimatePresence, useAnimationControls } from 'framer-motion';
    
-import NeuralNetwork from './NeuralNetwork';
+
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 type Errors = Record<string, string>;
 

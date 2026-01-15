@@ -168,7 +168,8 @@ export default function HomePage() {
         >
           <div className="absolute inset-0 p-6 flex flex-col justify-center gap-2">
             <h1 className="text-2xl md:text-4xl font-bold text-zinc-900 dark:text-white">
-              {content.hero.title}
+              {/* {content.hero.title} */}
+              hello
             </h1>
             <p className="mt-1 text-zinc-700 dark:text-zinc-300">
               {content.hero.subtitle}
