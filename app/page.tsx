@@ -15,7 +15,7 @@ export default function HomePage() {
   const [index, setIndex] = useState<SearchItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Load CMS from Gist via API route
+  // Load CMS from local content files via API route
   useEffect(() => {
     async function load() {
       try {

@@ -49,7 +49,7 @@ export default function AdminDashboard() {
   // Tabs
   const [activeTab, setActiveTab] = useState<TabKey>("home");
 
-  // Content states (from Gist)
+  // Content states (from local files)
   const [homeContent, setHomeContent] = useState<HomeContent | null>(null);
   const [aboutContent, setAboutContent] = useState<AboutContent | null>(null);
   const [contactContent, setContactContent] = useState<ContactContent | null>(null);
@@ -83,7 +83,7 @@ export default function AdminDashboard() {
     message: "",
   });
 
-  // ===== Load CMS content from Gist =====
+  // ===== Load CMS content from local files =====
   useEffect(() => {
     const loadContent = async () => {
       try {
@@ -381,7 +381,7 @@ export default function AdminDashboard() {
     if (!homeContent) {
       return (
         <p className="text-sm text-red-500">
-          No <code>home.json</code> found. Ensure it exists in your Gist.
+          No <code>home.json</code> found. Ensure it exists in the content directory.
         </p>
       );
     }
@@ -490,7 +490,7 @@ export default function AdminDashboard() {
     if (!aboutContent) {
       return (
         <p className="text-sm text-red-500">
-          No <code>about.json</code> found. Ensure it exists in your Gist.
+          No <code>about.json</code> found. Ensure it exists in the content directory.
         </p>
       );
     }
@@ -555,7 +555,7 @@ export default function AdminDashboard() {
     if (!contactContent) {
       return (
         <p className="text-sm text-red-500">
-          No <code>contact.json</code> found. Ensure it exists in your Gist.
+          No <code>contact.json</code> found. Ensure it exists in the content directory.
         </p>
       );
     }

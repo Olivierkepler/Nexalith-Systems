@@ -1,12 +1,18 @@
 import { NextResponse } from "next/server";
-import { readJsonFile, updateJsonFile } from "@/lib/gist";
+import { readFile, writeFile } from "fs/promises";
+import { join } from "path";
+
+const FILENAME = "about.json";
+const CONTENT_DIR = join(process.cwd(), "content");
 
 /**
- * GET — Fetch about.json from your Gist
+ * GET — Fetch about.json from local content directory
  */
 export async function GET() {
   try {
-    const data = await readJsonFile("about.json");
+    const filePath = join(CONTENT_DIR, FILENAME);
+    const fileContent = await readFile(filePath, "utf-8");
+    const data = JSON.parse(fileContent);
     return NextResponse.json(data);
   } catch (error: any) {
     console.error("Failed to load about.json:", error);
@@ -18,7 +24,7 @@ export async function GET() {
 }
 
 /**
- * PUT — Update about.json in your Gist
+ * PUT — Update about.json in local content directory
  */
 export async function PUT(request: Request) {
   try {
@@ -40,7 +46,8 @@ export async function PUT(request: Request) {
       );
     }
 
-    await updateJsonFile("about.json", body);
+    const filePath = join(CONTENT_DIR, FILENAME);
+    await writeFile(filePath, JSON.stringify(body, null, 2), "utf-8");
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
