@@ -175,7 +175,7 @@ export default function HomePage() {
               {content.hero.subtitle}
             </p>
             <p className="mt-3 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
-              Press <span className="border rounded px-1 py-0.5 text-[11px]">⌘K</span> or{" "}
+              Press <span className="border rounded px-1 py-0.5 text-[11px]">⌘K </span> or{" "}
               <span className="border rounded px-1 py-0.5 text-[11px]">Ctrl+K</span> anytime to search.
             </p>
           </div>
